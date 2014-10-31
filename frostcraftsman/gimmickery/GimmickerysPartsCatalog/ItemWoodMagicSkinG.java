@@ -8,9 +8,9 @@ public class ItemWoodMagicSkinG extends GimmickeryItemBase
 
 	public ItemWoodMagicSkinG(int id) {
 		super(id);
-		this.st("WoodMagicSkin","Ä¾ÖÊÈËÅ¼Æ¤·ô");
+		this.st("WoodMagicSkin");
 		this.setCreativeTab(Gimmickery.gct);
-		this.setMaxStackSize(64);//×î´ó¶ÑµşÄ¬ÈÏ64£¬¿ÉÊ¡ÂÔ
+		this.setMaxStackSize(64);//ï¿½ï¿½ï¿½Ñµï¿½Ä¬ï¿½ï¿½64ï¿½ï¿½ï¿½ï¿½Ê¡ï¿½ï¿½
 	}
 
 }

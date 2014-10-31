@@ -9,9 +9,9 @@ public class ItemStoneWheelGearG extends GimmickeryItemBase
 	public ItemStoneWheelGearG(int id) 
 	{
 		super(id);
-		this.st("StoneWheelGear","Ê¯ÖÊ³ÝÂÖ");
+		this.st("StoneWheelGear");
 		this.setCreativeTab(Gimmickery.gct);
-		this.setMaxStackSize(64);//×î´ó¶ÑµþÄ¬ÈÏ64£¬¿ÉÊ¡ÂÔ
+		this.setMaxStackSize(64);//ï¿½ï¿½ï¿½Ñµï¿½Ä¬ï¿½ï¿½64ï¿½ï¿½ï¿½ï¿½Ê¡ï¿½ï¿½
 		// TODO Auto-generated constructor stub
 	}
 

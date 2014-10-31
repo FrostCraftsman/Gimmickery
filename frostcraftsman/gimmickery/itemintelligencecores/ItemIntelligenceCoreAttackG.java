@@ -9,9 +9,9 @@ public class ItemIntelligenceCoreAttackG extends GimmickeryItemBase
 	public ItemIntelligenceCoreAttackG(int id) 
 	{
 		super(id);
-		this.st("IntelligenceCoreAttack","Áé»êºËÐÄ¡¤ÃÍ¹¥");
+		this.st("IntelligenceCoreAttack");
 		this.setCreativeTab(Gimmickery.gct);
-		this.setMaxStackSize(64);//×î´ó¶ÑµþÄ¬ÈÏ64£¬¿ÉÊ¡ÂÔ
+		this.setMaxStackSize(64);//ï¿½ï¿½ï¿½Ñµï¿½Ä¬ï¿½ï¿½64ï¿½ï¿½ï¿½ï¿½Ê¡ï¿½ï¿½
 	}
 }
 

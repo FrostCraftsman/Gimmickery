@@ -9,9 +9,9 @@ public class ItemStoneMagicSkinG extends GimmickeryItemBase
 	public ItemStoneMagicSkinG(int id) 
 	{
 		super(id);
-		this.st("StoneMagicSkin","Ê¯ÖÊÈËÅ¼Æ¤·ô");
+		this.st("StoneMagicSkin");
 		this.setCreativeTab(Gimmickery.gct);
-		this.setMaxStackSize(64);//×î´ó¶ÑµşÄ¬ÈÏ64£¬¿ÉÊ¡ÂÔ
+		this.setMaxStackSize(64);//ï¿½ï¿½ï¿½Ñµï¿½Ä¬ï¿½ï¿½64ï¿½ï¿½ï¿½ï¿½Ê¡ï¿½ï¿½
 	}
 
 

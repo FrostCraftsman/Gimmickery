@@ -6,9 +6,9 @@ public class ItemWoodWheelGearG extends GimmickeryItemBase{
 
 	public ItemWoodWheelGearG(int id) {
 		super(id);
-		this.st("WoodWheelGear","Ä¾³ÝÂÖ");
+		this.st("WoodWheelGear");
 		this.setCreativeTab(Gimmickery.gct);
-		this.setMaxStackSize(64);//×î´ó¶ÑµþÄ¬ÈÏ64£¬¿ÉÊ¡ÂÔ
+		this.setMaxStackSize(64);//ï¿½ï¿½ï¿½Ñµï¿½Ä¬ï¿½ï¿½64ï¿½ï¿½ï¿½ï¿½Ê¡ï¿½ï¿½
 		// TODO Auto-generated constructor stub
 	}
 

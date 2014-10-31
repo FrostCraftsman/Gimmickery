@@ -9,9 +9,9 @@ public class ItemDiamondSkeletonFrameG extends GimmickeryItemBase
 	public ItemDiamondSkeletonFrameG (int id) 
 	{
 		super(id);
-		this.st("DiamondSkeletonFrame","×êÊ¯ÈËÅ¼¹Ç¼Ü");
+		this.st("DiamondSkeletonFrame");
 		this.setCreativeTab(Gimmickery.gct);
-		this.setMaxStackSize(64);//×î´ó¶ÑµþÄ¬ÈÏ64£¬¿ÉÊ¡ÂÔ
+		this.setMaxStackSize(64);//ï¿½ï¿½ï¿½Ñµï¿½Ä¬ï¿½ï¿½64ï¿½ï¿½ï¿½ï¿½Ê¡ï¿½ï¿½
 		// TODO Auto-generated constructor stub
 	}
 

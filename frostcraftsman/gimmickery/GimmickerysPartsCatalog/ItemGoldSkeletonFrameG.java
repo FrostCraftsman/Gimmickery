@@ -9,9 +9,9 @@ public class ItemGoldSkeletonFrameG extends GimmickeryItemBase
 	public ItemGoldSkeletonFrameG(int id) 
 	{
 		super(id);
-		this.st("GoldSkeletonFrame","½ğÖÊÈËÅ¼¹Ç¼Ü");
+		this.st("GoldSkeletonFrame");
 		this.setCreativeTab(Gimmickery.gct);
-		this.setMaxStackSize(64);//×î´ó¶ÑµşÄ¬ÈÏ64£¬¿ÉÊ¡ÂÔ
+		this.setMaxStackSize(64);//ï¿½ï¿½ï¿½Ñµï¿½Ä¬ï¿½ï¿½64ï¿½ï¿½ï¿½ï¿½Ê¡ï¿½ï¿½
 		// TODO Auto-generated constructor stub
 	}
 

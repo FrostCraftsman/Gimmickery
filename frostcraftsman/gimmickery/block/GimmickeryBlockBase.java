@@ -7,12 +7,12 @@ import net.minecraft.block.material.Material;
 
 
 /**
- * ËùÓĞ·½¿éµÄ¸¸Àà
+ * ï¿½ï¿½ï¿½Ğ·ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½
  */
 public class GimmickeryBlockBase extends Block{
 
 	/**
-	 * @param par2Material ·½¿é²ÄÖÊ
+	 * @param par2Material ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public GimmickeryBlockBase(int id, Material par2Material) {
 		super(id, par2Material);
@@ -20,15 +20,14 @@ public class GimmickeryBlockBase extends Block{
 	}
 	
 	/**
-	 * Çë²Î¿¼GimmickeryItemBase
-	 * @param par1Str ÄÚ²¿Ãû³Æ£¬ÌùÍ¼ÎÄ¼şÃû
-	 * @param par2Str ÏÔÊ¾µÄÃû×Ö
+	 * ï¿½ï¿½Î¿ï¿½GimmickeryItemBase
+	 * @param par1Str ï¿½Ú²ï¿½ï¿½ï¿½Æ£ï¿½ï¿½ï¿½Í¼ï¿½Ä¼ï¿½ï¿½ï¿½
+	 * @param par2Str ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
-	public void stb(String par1Str,String par2Str){
+	public void stb(String par1Str){
 		if(par1Str != ""){
 			this.setUnlocalizedName(par1Str);
 			this.setTextureName("gimmickery:" + par1Str);
-			LanguageRegistry.addName(this, par2Str);
 			GameRegistry.registerBlock(this, par1Str);
 		}
 	}

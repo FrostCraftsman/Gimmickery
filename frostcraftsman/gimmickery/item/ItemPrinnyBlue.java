@@ -11,7 +11,7 @@ public class ItemPrinnyBlue extends GimmickeryItemBase{
 
 	public ItemPrinnyBlue(int id) {
 		super(id);
-		this.st("PrinnyBlue", "神秘生物·蓝色普利尼");
+		this.st("PrinnyBlue");
 		this.setCreativeTab(Gimmickery.gct);
 		// TODO Auto-generated constructor stub
 	}

@@ -5,7 +5,7 @@ import net.minecraft.item.Item;
 
 
 /**
- * ËùÓĞÎïÆ·µÄ¸¸Àà
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½Ä¸ï¿½ï¿½ï¿½
  */
 public class GimmickeryItemBase extends Item{
 
@@ -15,15 +15,14 @@ public class GimmickeryItemBase extends Item{
 	}
 	
 	/**
-	 * ÉèÖÃÄÚ²¿Ãû³Æ£¬ÏÔÊ¾ÎïÆ·Ãû£¬ÌùÍ¼
-	 * @param par1Str ÄÚ²¿Ãû³ÆºÍÌùÍ¼£¬²»ÓÃ¼ÓÀ©ÕÅÃû 
-	 * @param par2Str ÉèÖÃÍæ¼Ò¿´µ½µÄÃû³Æ 
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½Æ£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½Í¼
+	 * @param par1Str ï¿½Ú²ï¿½ï¿½ï¿½Æºï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+	 * @param par2Str ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	 */
-	public void st(String par1Str,String par2Str) {
+	public void st(String par1Str) {
 		if(par1Str != " ") {
 			this.setUnlocalizedName(par1Str);
 			this.setTextureName("gimmickery:" + par1Str);
-			LanguageRegistry.addName(this, par2Str);
 		}
 	}
 }

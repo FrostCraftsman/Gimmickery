@@ -9,9 +9,9 @@ public class ItemEmptyIntelligenceCoreG extends GimmickeryItemBase
 	public ItemEmptyIntelligenceCoreG(int id) 
 	{
 		super(id);
-		this.st("EmptyIntelligenceCore","¿ÕºËÐÄ");
+		this.st("EmptyIntelligenceCore");
 		this.setCreativeTab(Gimmickery.gct);
-		this.setMaxStackSize(64);//×î´ó¶ÑµþÄ¬ÈÏ64£¬¿ÉÊ¡ÂÔ
+		this.setMaxStackSize(64);//ï¿½ï¿½ï¿½Ñµï¿½Ä¬ï¿½ï¿½64ï¿½ï¿½ï¿½ï¿½Ê¡ï¿½ï¿½
 	}
 
 }

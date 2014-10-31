@@ -7,9 +7,9 @@ public class SoulAttackG extends GimmickeryItemBase{
 
 	public SoulAttackG(int id) {
 		super(id);
-		this.st("SoulAttack","ÈËÅ¼Áé»ê¡¤ÃÍ¹¥");
+		this.st("SoulAttack");
 		this.setCreativeTab(Gimmickery.gct);
-		this.setMaxStackSize(1);//×î´ó¶ÑµşÄ¬ÈÏ1£¬¿ÉÊ¡ÂÔ
+		this.setMaxStackSize(1);//ï¿½ï¿½ï¿½Ñµï¿½Ä¬ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½Ê¡ï¿½ï¿½
 		// TODO Auto-generated constructor stub
 	}
 }

@@ -8,9 +8,9 @@ public class ItemElementaryMagicLubeOilG extends GimmickeryItemBase
 	public ItemElementaryMagicLubeOilG(int id) 
 	{
 		super(id);
-		this.st("ElementaryMagicLubeOil","»úÇÉÈËÅ¼Èó»¬ÓÍ");
+		this.st("ElementaryMagicLubeOil");
 		this.setCreativeTab(Gimmickery.gct);
-		this.setMaxStackSize(64);//×î´ó¶ÑµşÄ¬ÈÏ64£¬¿ÉÊ¡ÂÔ
+		this.setMaxStackSize(64);//ï¿½ï¿½ï¿½Ñµï¿½Ä¬ï¿½ï¿½64ï¿½ï¿½ï¿½ï¿½Ê¡ï¿½ï¿½
 	}
 
 }

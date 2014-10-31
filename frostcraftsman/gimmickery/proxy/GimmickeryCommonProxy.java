@@ -1,31 +1,39 @@
 package net.frostcraftsman.gimmickery.proxy;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 
 /**
-* ¼ÓÔØ´úÀí£¨Server¶Ë£©
+* ï¿½ï¿½ï¿½Ø´ï¿½ï¿½?Serverï¿½Ë£ï¿½
 */
 public class GimmickeryCommonProxy {
 
 	/**
-	 * Ö´ÐÐµÚ1½×¶ÎµÄ¼ÓÔØÐÐÎª¡£
+	 * Ö´ï¿½Ðµï¿½1ï¿½×¶ÎµÄ¼ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½
 	 */
 	public void preInit() {
 	    	
 	}
 	    
-	/**
-	 * Ö´ÐÐµÚ2½×¶ÎµÄ¼ÓÔØÐÐÎª¡£
-	 */
-	public void init() {
-		LanguageRegistry.instance().addStringLocalization("itemGroup.Gimmickery", "»úÇÉ"); //´´ÔìÄ£Ê½À¸µÄÃû³Æ
-		LanguageRegistry.instance().addStringLocalization("entity.WoodKarakuriNingy.name","Ä¾ÖÊÈËÅ¼");
-		LanguageRegistry.instance().addStringLocalization("entity.PrinnyBlue.name","À¶É«ÆÕÀûÄá");
-	}
+	public static Set<String> languages = new HashSet(); 
+	  
+ 	static { 
+ 		languages.add("zh_CN"); 
+ 		languages.add("en_US"); 
+ 	} 
+ 	 
+ 	public void init() { 
+ 		for (String lang : languages) { 
+ 			LanguageRegistry.instance().loadLocalization( 
+ 					"/assets/gimmickery/lang/" + lang + ".properties", lang, false); 
+ 		} 
+ 	} 
 	    
 	/**
-	 * Ö´ÐÐµÚ3½×¶ÎµÄ¼ÓÔØÐÐÎª¡£
+	 * Ö´ï¿½Ðµï¿½3ï¿½×¶ÎµÄ¼ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½
 	 */
 	public void postInit() {
 		
@@ -37,18 +45,5 @@ public class GimmickeryCommonProxy {
      public void registerSound() {
      }
 
-		public static Set<String> languages = new HashSet(); 
-  
-     	static { 
-     		languages.add("zh_CN"); 
-     		languages.add("en_US"); 
-     	} 
-     	 
-     	public void init() { 
-     		for (String lang : languages) { 
-     			LanguageRegistry.instance().loadLocalization( 
-     					"/assets/gimmickery/lang/" + lang + ".properties", lang, false); 
-     		} 
-     	} 
 }
 

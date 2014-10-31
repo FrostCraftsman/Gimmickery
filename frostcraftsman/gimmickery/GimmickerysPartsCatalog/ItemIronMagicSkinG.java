@@ -9,9 +9,9 @@ public class ItemIronMagicSkinG extends GimmickeryItemBase
 	public ItemIronMagicSkinG(int id) 
 	{
 		super(id);
-		this.st("IronMagicSkin","ÌúÖÊÈËÅ¼Æ¤·ô");
+		this.st("IronMagicSkin");
 		this.setCreativeTab(Gimmickery.gct);
-		this.setMaxStackSize(64);//×î´ó¶ÑµşÄ¬ÈÏ64£¬¿ÉÊ¡ÂÔ
+		this.setMaxStackSize(64);//ï¿½ï¿½ï¿½Ñµï¿½Ä¬ï¿½ï¿½64ï¿½ï¿½ï¿½ï¿½Ê¡ï¿½ï¿½
 	}
 
 

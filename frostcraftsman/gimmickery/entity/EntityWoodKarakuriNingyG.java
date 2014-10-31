@@ -6,7 +6,6 @@ import java.util.UUID;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.frostcraftsman.gimmickery.registry.GimmickeryBlocks;
-import net.frostcraftsman.gimmikery.world.WorldG;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockColored;
 import net.minecraft.entity.Entity;
@@ -73,7 +72,7 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
             this.tasks.addTask(4, new EntityAILeapAtTarget(this, 0.3F));
             this.tasks.addTask(5, new EntityAIWander(this, 1.25F));
             this.tasks.addTask(6, new EntityAIWatchClosest(this,EntityPlayer.class, 8.0F));
-            // ×¨ÓÃAIµÄmanager
+            // ×¨ï¿½ï¿½AIï¿½ï¿½manager
             this.tasks.addTask(7, new EntityKarakuriNingyAIManager(this, 1.25F));
             
             this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
@@ -85,7 +84,7 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
        
         if(this.FindEntityPlayerNow() instanceof EntityPlayer)
         { 	
-            System.out.println("ÕÒµ½Íæ¼ÒÀ²£¡~Íæ¼ÒÃû×ÖÊÇ£º"+player1.getEntityName());
+            System.out.println("ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½~ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½"+player1.getEntityName());
         }
 	    
 
@@ -111,7 +110,7 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
         this.tasks.addTask(4, new EntityAILeapAtTarget(this, 0.3F));
         this.tasks.addTask(5, new EntityAIWander(this, 1.25F));
         this.tasks.addTask(6, new EntityAIWatchClosest(this,EntityPlayer.class, 8.0F));
-        // ×¨ÓÃAIµÄmanager
+        // ×¨ï¿½ï¿½AIï¿½ï¿½manager
         this.tasks.addTask(7, new EntityKarakuriNingyAIManager(this, 1.25F));
         
         this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
@@ -121,16 +120,16 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
         
         if(this.findPowerSource() == true)
         {    
-            System.out.println("³É¹¦»ñµÃÄÜÁ¿¡£");
+            System.out.println("ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
         }
         else
         {
-            System.out.println("ÄÜÁ¿¡¤Áã¡¤ÔË¶¯¡¤²»ÄÜ¡£¡£¡£");
+            System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã¡¤ï¿½Ë¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü¡ï¿½ï¿½ï¿½ï¿½ï¿½");
         }
     }
 
 	
-	/** ¸÷ÖÖ·½±ãÑ°ÕÒÄ§·½µÄ³£Á¿ */
+	/** ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½Ñ°ï¿½ï¿½Ä§ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ */
 	int distance=10;
 	int id;
 	int kposX;
@@ -151,51 +150,51 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
 		        	 
 		    			 id = this.worldObj.getBlockId(kposX, jposY, iposZ);
 		    				 
-		 				 System.out.println("ÏÖÔÚÊÇxÖá·½Ïò,µÚ"+k*i*k+"´ÎÌ½Ë÷£¬ÏÖx×ø±ê"+kposX+",ÏÖy×ø±ê"+jposY+",ÏÖz×ø±ê"+iposZ+",ÏÖidºÅ"+id);
+		 				 System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½xï¿½á·½ï¿½ï¿½,ï¿½ï¿½"+k*i*k+"ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½"+kposX+",ï¿½ï¿½yï¿½ï¿½ï¿½"+jposY+",ï¿½ï¿½zï¿½ï¿½ï¿½"+iposZ+",ï¿½ï¿½idï¿½ï¿½"+id);
 		 					
 		 				 if (id == GimmickeryBlocks.PowerSourceBlock.blockID)
 		    				{
-		    				     System.out.println("ÒÑ¶¨Î»µ½Ä§·½XÖá×ø±ê:"+kposX);
+		    				     System.out.println("ï¿½Ñ¶ï¿½Î»ï¿½ï¿½Ä§ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½:"+kposX);
 		    				     return true;
 		    				}
 		 			     else
 		 					{
 		 						
-		 						 System.out.println("xÖá·½ÏòÎ´·¢ÏÖ¡£");
+		 						 System.out.println("xï¿½á·½ï¿½ï¿½Î´ï¿½ï¿½ï¿½Ö¡ï¿½");
 		 						      
 		 					}			
 		    	}
 		        
-		     System.out.println("ÏÖÔÚÊÇyÖá·½Ïò,µÚ"+j*i+"´ÎÌ½Ë÷£¬ÏÖx×ø±ê"+kposX+",ÏÖy×ø±ê"+jposY+",ÏÖz×ø±ê"+iposZ+",ÏÖidºÅ"+id);
+		     System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½yï¿½á·½ï¿½ï¿½,ï¿½ï¿½"+j*i+"ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½"+kposX+",ï¿½ï¿½yï¿½ï¿½ï¿½"+jposY+",ï¿½ï¿½zï¿½ï¿½ï¿½"+iposZ+",ï¿½ï¿½idï¿½ï¿½"+id);
 					
 		     if (id == GimmickeryBlocks.PowerSourceBlock.blockID)
 			    {
 		    	
-				     System.out.println("ÒÑ¶¨Î»µ½Ä§·½YÖá×ø±ê:"+jposY);
+				     System.out.println("ï¿½Ñ¶ï¿½Î»ï¿½ï¿½Ä§ï¿½ï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½:"+jposY);
 				     return true;
 				    
 			    }
 		     else
 			    {
 				
-				     System.out.println("YÖá·½ÏòÎ´·¢ÏÖ¡£");
+				     System.out.println("Yï¿½á·½ï¿½ï¿½Î´ï¿½ï¿½ï¿½Ö¡ï¿½");
 					
 			    }
 		    
 	        }
-	       System.out.println("ÏÖÔÚÊÇzÖá·½Ïò,µÚ"+i+"´ÎÌ½Ë÷£¬ÏÖx×ø±ê"+kposX+",ÏÖy×ø±ê"+jposY+",ÏÖz×ø±ê"+iposZ+",ÏÖidºÅ"+id);
+	       System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½zï¿½á·½ï¿½ï¿½,ï¿½ï¿½"+i+"ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½"+kposX+",ï¿½ï¿½yï¿½ï¿½ï¿½"+jposY+",ï¿½ï¿½zï¿½ï¿½ï¿½"+iposZ+",ï¿½ï¿½idï¿½ï¿½"+id);
 			
 	       if (id == GimmickeryBlocks.PowerSourceBlock.blockID)
 			  {
 				
-		           System.out.println("ÒÑ¶¨Î»µ½Ä§·½ZÖá×ø±ê:"+iposZ);
+		           System.out.println("ï¿½Ñ¶ï¿½Î»ï¿½ï¿½Ä§ï¿½ï¿½Zï¿½ï¿½ï¿½ï¿½ï¿½:"+iposZ);
 		           return true;
 		        
 			  }
 		   else
 			  {
 				
-				   System.out.println("ZÖá·½ÏòÎ´·¢ÏÖ¡£");
+				   System.out.println("Zï¿½á·½ï¿½ï¿½Î´ï¿½ï¿½ï¿½Ö¡ï¿½");
 				
 			  }
 	   }
@@ -226,7 +225,7 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
     
 	
 	/**
-	 *  ¸÷ÖÖ·½±ãÑ°ÕÒplayerµÄ³£Á¿¡£
+	 *  ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½Ñ°ï¿½ï¿½playerï¿½Ä³ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	float f = 8.0F;
     List list;
@@ -248,7 +247,7 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
             else
             {
             	this.FindEntityPlayerNow();
-            	System.out.println("»¹Ã»ÕÒµ½£¬¼ÌÐøÑ°ÕÒ~");
+            	System.out.println("ï¿½ï¿½Ã»ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ°ï¿½ï¿½~");
             }
         }
         return null;

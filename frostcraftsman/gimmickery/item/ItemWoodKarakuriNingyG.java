@@ -12,7 +12,7 @@ public class ItemWoodKarakuriNingyG extends GimmickeryItemBase{
 
 	public ItemWoodKarakuriNingyG(int id) {
 		super(id);
-		this.st("WoodKarakuriNingy", "ƒæ÷ »À≈º");
+		this.st("WoodKarakuriNingy");
 		this.setCreativeTab(Gimmickery.gct);
 		// TODO Auto-generated constructor stub
 	}
