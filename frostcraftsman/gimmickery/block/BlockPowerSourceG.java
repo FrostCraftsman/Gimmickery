@@ -13,14 +13,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
 public class BlockPowerSourceG extends GimmickeryBlockContainerBase{
-	private int Num=0;
-	public int blockposX;
-	public int blockposY;
-	public int blockposZ;
 
 	public BlockPowerSourceG(int id, Material par2Material) {
 		super(id, par2Material);
-		this.stb("PowerSourceBlock", "能源方块");
+		this.stb("PowerSourceBlock", "鑳介噺榄旀柟");
 		this.setCreativeTab(Gimmickery.gct);
 		this.setTextureName("gimmickery:cristal");
 		// TODO Auto-generated constructor stub
@@ -32,22 +28,11 @@ public class BlockPowerSourceG extends GimmickeryBlockContainerBase{
 	public void onBlockAdded(World par1World, int par2, int par3, int par4)
     {
         super.onBlockAdded(par1World, par2, par3, par4);
-        CristalTileEntity.cristalNum+=1;
-        System.out.println(CristalTileEntity.cristalNum);
-        blockposX=par2;
-        blockposY=par3;
-        blockposZ=par4;
-        System.out.println("x坐标"+blockposX+",y坐标"+blockposY+",z坐标"+blockposZ+",blockid号"+GimmickeryBlocks.PowerSourceBlock.blockID);
     }
 
 	public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
     {
         super.breakBlock(par1World, par2, par3, par4, par5, par6);
-        if(CristalTileEntity.cristalNum>=0){
-        	CristalTileEntity.cristalNum-=1;
-        }else{
-        	CristalTileEntity.cristalNum=0;
-        }
     }
 
 	@Override

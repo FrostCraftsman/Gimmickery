@@ -1,23 +1,18 @@
 package net.frostcraftsman.gimmickery;
 
-import java.util.Map;
 import java.util.logging.Logger;
 
-import net.frostcraftsman.gimmickery.block.BlockPowerSourceG;
+import net.frostcraftsman.gimmickery.configration.GimmickeryConfiger;
 import net.frostcraftsman.gimmickery.entity.EntityPrinnyBlue;
 import net.frostcraftsman.gimmickery.entity.EntityWoodKarakuriNingyG;
+import net.frostcraftsman.gimmickery.proxy.GimmickeryClientProps;
 import net.frostcraftsman.gimmickery.proxy.GimmickeryCommonProxy;
 import net.frostcraftsman.gimmickery.registry.GimmickeryBlocks;
 import net.frostcraftsman.gimmickery.registry.GimmickeryItems;
-import net.frostcraftsman.gimmickery.render.RenderWoodKarakuriNingyG;
 import net.minecraft.block.Block;
-import net.minecraft.client.model.ModelPig;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.biome.BiomeGenBase;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -52,10 +47,12 @@ public class Gimmickery {
 	{
 		 log.setParent(FMLLog.getLogger());
 	     log.info("Starting Gimmickery " + Gimmickery.VERSION);
-	     
+	     GimmickeryConfiger.InitliazeConfig(event.getSuggestedConfigurationFile());
+	     GimmickeryClientProps.init();
 	     GimmickeryItems.init();
 	     GimmickeryBlocks.init();
 	     proxy.preInit();
+	     GimmickeryConfiger.SaveConfig();
 	}
 	 
 	@EventHandler

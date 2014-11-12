@@ -5,7 +5,7 @@ import net.minecraft.item.Item;
 
 
 /**
- * ������Ʒ�ĸ���
+ * 自定义物品的基类
  */
 public class GimmickeryItemBase extends Item{
 
@@ -15,9 +15,8 @@ public class GimmickeryItemBase extends Item{
 	}
 	
 	/**
-	 * �����ڲ���ƣ���ʾ��Ʒ����ͼ
-	 * @param par1Str �ڲ���ƺ���ͼ�����ü������� 
-	 * @param par2Str ������ҿ�������� 
+	 * 快捷设定内部逻辑名称的方法
+	 * @param par1Str 内部逻辑名称 
 	 */
 	public void st(String par1Str) {
 		if(par1Str != " ") {

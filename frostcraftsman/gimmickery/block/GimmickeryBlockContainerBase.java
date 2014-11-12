@@ -9,22 +9,22 @@ import net.minecraft.world.World;
 
 
 /**
- * ���з���ĸ���
+ * 自定义容器方块的基类
  */
 public class GimmickeryBlockContainerBase extends BlockContainer{
 
 	/**
-	 * @param par2Material �������
-	 */
-	public GimmickeryBlockContainerBase(int id, Material par2Material) {
+	 * @param par2Material 方块使用的逻辑材质类
+	 */ GimmickeryBlockContainerBase(int id, Material par2Material) {
 		super(id, par2Material);
 		// TODO Auto-generated constructor stub
 	}
 	
 	/**
-	 * ��ο�GimmickeryItemBase
-	 * @param par1Str �ڲ����ƣ���ͼ�ļ���
-	 * @param par2Str ��ʾ������
+	 * 待修改！请@冰音琉 尽快修改此方法与GimmickeryBlockBase
+	 * 的stb方法一样并以新的方式正确注册其本地语言名称
+	 * 
+	 * 最后记得帮我把注释改过来w
 	 */
 	public void stb(String par1Str,String par2Str){
 		if(par1Str != ""){

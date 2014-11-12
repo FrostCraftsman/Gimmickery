@@ -6,7 +6,7 @@ import net.minecraft.creativetab.CreativeTabs;
 public class GimmickeryCreativeTabs extends CreativeTabs{
 
 	/**
-     * @param label ±êÇ©Ãû³Æ
+     * @param label Tabæ çš„åç§°
      */
 	public GimmickeryCreativeTabs(String label) {
 		super(label);

@@ -1,11 +1,12 @@
 package net.frostcraftsman.gimmickery.registry;
 
 import net.frostcraftsman.gimmickery.block.*;
+import net.frostcraftsman.gimmickery.configration.GimmickeryConfiger;
 import net.minecraft.block.material.Material;
 
 
 /**
- * ·½¿é×¢²áÀà
+ * æ³¨å†Œæ–¹å—çš„ç±»
  */
 public class GimmickeryBlocks 
 {
@@ -13,6 +14,13 @@ public class GimmickeryBlocks
 	public static BlockPowerSourceG PowerSourceBlock;
 
 	public static void init() {
-		PowerSourceBlock = new BlockPowerSourceG(3500, Material.glass);
+		int id = 3500;
+		try {
+			id=GimmickeryConfiger.GetBlockID("Block_Cristal", 3500);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		PowerSourceBlock = new BlockPowerSourceG(id, Material.glass);
 	}
 }

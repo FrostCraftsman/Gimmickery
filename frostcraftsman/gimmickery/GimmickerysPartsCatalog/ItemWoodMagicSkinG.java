@@ -10,7 +10,7 @@ public class ItemWoodMagicSkinG extends GimmickeryItemBase
 		super(id);
 		this.st("WoodMagicSkin");
 		this.setCreativeTab(Gimmickery.gct);
-		this.setMaxStackSize(64);//���ѵ�Ĭ��64����ʡ��
+		this.setMaxStackSize(64);//设置最大堆叠数为64
 	}
 
 }

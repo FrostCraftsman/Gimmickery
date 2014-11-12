@@ -7,12 +7,12 @@ import net.minecraft.block.material.Material;
 
 
 /**
- * ���з���ĸ���
+ * 自定义普通方块的基类
  */
 public class GimmickeryBlockBase extends Block{
 
 	/**
-	 * @param par2Material �������
+	 * @param par2Material 方块使用的逻辑材质类
 	 */
 	public GimmickeryBlockBase(int id, Material par2Material) {
 		super(id, par2Material);
@@ -20,9 +20,8 @@ public class GimmickeryBlockBase extends Block{
 	}
 	
 	/**
-	 * ��ο�GimmickeryItemBase
-	 * @param par1Str �ڲ���ƣ���ͼ�ļ���
-	 * @param par2Str ��ʾ������
+	 * 快捷设定内部逻辑名称的方法
+	 * @param par1Str 方块名称（内部逻辑名称）
 	 */
 	public void stb(String par1Str){
 		if(par1Str != ""){

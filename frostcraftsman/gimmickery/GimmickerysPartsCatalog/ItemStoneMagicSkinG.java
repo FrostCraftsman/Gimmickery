@@ -11,7 +11,7 @@ public class ItemStoneMagicSkinG extends GimmickeryItemBase
 		super(id);
 		this.st("StoneMagicSkin");
 		this.setCreativeTab(Gimmickery.gct);
-		this.setMaxStackSize(64);//���ѵ�Ĭ��64����ʡ��
+		this.setMaxStackSize(64);//设置最大堆叠数为64
 	}
 
 

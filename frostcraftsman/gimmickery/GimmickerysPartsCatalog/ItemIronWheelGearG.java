@@ -11,7 +11,7 @@ public class ItemIronWheelGearG extends GimmickeryItemBase
 		super(id);
 		this.st("IronWheelGear");
 		this.setCreativeTab(Gimmickery.gct);
-		this.setMaxStackSize(64);//���ѵ�Ĭ��64����ʡ��
+		this.setMaxStackSize(64);//设置最大堆叠数为64
 		// TODO Auto-generated constructor stub
 	}
 
