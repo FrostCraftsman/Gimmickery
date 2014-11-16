@@ -6,6 +6,7 @@ import org.lwjgl.opengl.GL12;
 import net.frostcraftsman.gimmickery.model.ModelCristal;
 import net.frostcraftsman.gimmickery.proxy.GimmickeryClientProps;
 import net.frostcraftsman.gimmickery.tileentity.CristalTileEntity;
+import net.frostcraftsman.gimmickery.worlddatasaver.GimmickeryWorldDataSaver;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.Tessellator;
@@ -46,8 +47,9 @@ public class CristalTileEntityRenderer extends TileEntitySpecialRenderer {
         cristalModel.render((Entity)null, 0.0F, 0.0F, 0.0F, 0F, 0.0F, 0.0625F);
         FontRenderer fontrenderer = this.getFontRenderer();
     	String s=new String("PLZ WAIT:P");
+        int color = GimmickeryClientProps.CRISTAL_NAME_COLOR;
         try{
-        	s=this.tileEntity.getName();
+        		s=this.tileEntity.getName();
         }catch(java.lang.NullPointerException e){
         	s="NULL";
         }
@@ -60,7 +62,6 @@ public class CristalTileEntityRenderer extends TileEntitySpecialRenderer {
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         int width = fontrenderer.getStringWidth(s) / 2;
-        int color = GimmickeryClientProps.CRISTAL_NAME_COLOR;
         Tessellator tessellator = Tessellator.instance;
         GL11.glDisable(GL11.GL_TEXTURE_2D);
         tessellator.startDrawingQuads();

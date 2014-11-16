@@ -7,6 +7,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.frostcraftsman.gimmickery.configration.GimmickeryConfiger;
 import net.frostcraftsman.gimmickery.model.ModelCristal;
 import net.frostcraftsman.gimmickery.proxy.GimmickeryClientProps;
+import net.frostcraftsman.gimmickery.worlddatasaver.GimmickeryWorldDataSaver;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
@@ -84,5 +85,17 @@ public class CristalTileEntity extends TileEntity {
 	
 	public void updateEntity(){
 		ticker++;
+	}
+
+	public void plu(){
+		GimmickeryWorldDataSaver.get(worldObj).CristalNumplu();
+	}
+	
+	public void min(){
+		GimmickeryWorldDataSaver.get(worldObj).CristalNummin();
+	}
+
+	public int getCristalNum(){
+		return GimmickeryWorldDataSaver.get(worldObj).CristalNum;
 	}
 }
