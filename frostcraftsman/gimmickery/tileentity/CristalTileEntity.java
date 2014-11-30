@@ -16,7 +16,6 @@ import net.minecraft.tileentity.TileEntity;
 
 public class CristalTileEntity extends TileEntity {
 	private int cristalType=0;
-	public static int ticker=0;
 	private String name = this.setName();
 	private boolean isDefaultName=true;
 	
@@ -83,19 +82,8 @@ public class CristalTileEntity extends TileEntity {
 		this.isDefaultName=false;
 	}
 	
-	public void updateEntity(){
-		ticker++;
-	}
-
-	public void plu(){
-		GimmickeryWorldDataSaver.get(worldObj).CristalNumplu();
+	public int getCristalNum(){
+		return GimmickeryWorldDataSaver.get(this.getWorldObj()).CristalNum;
 	}
 	
-	public void min(){
-		GimmickeryWorldDataSaver.get(worldObj).CristalNummin();
-	}
-
-	public int getCristalNum(){
-		return GimmickeryWorldDataSaver.get(worldObj).CristalNum;
-	}
 }

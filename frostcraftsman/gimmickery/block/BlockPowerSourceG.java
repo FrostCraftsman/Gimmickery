@@ -4,6 +4,7 @@ import net.frostcraftsman.gimmickery.Gimmickery;
 import net.frostcraftsman.gimmickery.proxy.GimmickeryClientProps;
 import net.frostcraftsman.gimmickery.registry.GimmickeryBlocks;
 import net.frostcraftsman.gimmickery.tileentity.CristalTileEntity;
+import net.frostcraftsman.gimmickery.worlddatasaver.GimmickeryWorldDataSaver;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -25,29 +26,23 @@ public class BlockPowerSourceG extends GimmickeryBlockContainerBase{
 		this.setLightValue(1.0F);
 	}
 	
-	public void onBlockAdded(World par1World, int par2, int par3, int par4)
+	public void onBlockAdded(World par1, int par2, int par3, int par4)
     {
-        super.onBlockAdded(par1World, par2, par3, par4);
-		if(true){
-	        CristalTileEntity t = (CristalTileEntity) par1World.getBlockTileEntity(par2, par3, par4);
-	        t.plu();
-		}
+        super.onBlockAdded(par1, par2, par3, par4);
+		GimmickeryWorldDataSaver.get(par1).CristalNumplu();
     }
 
-	public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
+	public void breakBlock(World par1, int par2, int par3, int par4, int par5, int par6)
     {
-		if(true){
-			CristalTileEntity t = (CristalTileEntity) par1World.getBlockTileEntity(par2, par3, par4);
-			t.min();
-		}
-		super.breakBlock(par1World, par2, par3, par4, par5, par6);
+		GimmickeryWorldDataSaver.get(par1).CristalNummin();
+		super.breakBlock(par1, par2, par3, par4, par5, par6);
     }
 	
 	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9){
-		if(!par1World.isRemote){
 			CristalTileEntity t = (CristalTileEntity) par1World.getBlockTileEntity(par2, par3, par4);
-			par5EntityPlayer.addChatMessage(""+t.getCristalNum());
-		}
+			if(!par1World.isRemote){
+				par5EntityPlayer.addChatMessage(""+t.getCristalNum());
+			}
 		return true;
 	}
 

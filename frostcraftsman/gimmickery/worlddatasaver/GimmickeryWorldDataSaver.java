@@ -40,10 +40,10 @@ public class GimmickeryWorldDataSaver extends WorldSavedData {
 	}
 	
 	public static GimmickeryWorldDataSaver get(World world) {
-		GimmickeryWorldDataSaver data = (GimmickeryWorldDataSaver)world.loadItemData(GimmickeryWorldDataSaver.class, "Gimmickery");
+		GimmickeryWorldDataSaver data = (GimmickeryWorldDataSaver)world.perWorldStorage.loadData(GimmickeryWorldDataSaver.class, "Gimmickery");
 		if (data == null) {
 			data = new GimmickeryWorldDataSaver();
-			world.setItemData("Gimmickery", data);
+			world.perWorldStorage.setData("Gimmickery", data);
 		}
 		return data;
 	}

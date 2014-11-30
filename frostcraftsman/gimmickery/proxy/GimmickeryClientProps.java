@@ -6,6 +6,7 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class GimmickeryClientProps 
 {
+	public static int renderTick=0;
 	public final static int RENDER_MUILTY_FACE_BLOCK = RenderingRegistry.getNextAvailableRenderId();
 	public final static ResourceLocation TEX_DEFAULT = new ResourceLocation("gimmickery:textures/default.png");
 	public static int RANDOM_NAME_LENGTH;

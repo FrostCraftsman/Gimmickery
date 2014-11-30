@@ -13,8 +13,10 @@ package net.frostcraftsman.gimmickery.model;
 
 import org.lwjgl.opengl.GL11;
 
+import net.frostcraftsman.gimmickery.RenderTickHandler;
 import net.frostcraftsman.gimmickery.proxy.GimmickeryClientProps;
 import net.frostcraftsman.gimmickery.tileentity.CristalTileEntity;
+import net.frostcraftsman.gimmickery.worlddatasaver.GimmickeryWorldDataSaver;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBox;
@@ -27,10 +29,10 @@ import net.minecraft.util.ResourceLocation;
 public class ModelCristal extends GimmickeryModelBase
 {
   //fields
+	private static double rotationSpeed=0;
     ModelRenderer Cristal;
     ModelRenderer goldchip1;
     ModelRenderer goldchip2;
-    public int ticker=0;
     private static final ResourceLocation CRISTAL_TEXTURE = new ResourceLocation("gimmickery:textures\\blocks\\cristal.png");
 
   
@@ -52,21 +54,28 @@ public class ModelCristal extends GimmickeryModelBase
         goldchip2.addBox(-14F, -8F, -4F, 1, 10, 6);
         goldchip2.setRotationPoint(0F, -8F, 0F);
     }
+    
+  public void render(){
+	  this.render((Entity)null, 0.0F, 0.0F, 0.0F, 0F, 0.0F, 0.0625F);
+  }
   @Override
   public void render(Entity par1Entity, float par2, float par3, float par4, float par5, float par6, float par7)
   {
-	  this.ticker=CristalTileEntity.ticker;
 	  Minecraft.getMinecraft().renderEngine.bindTexture(CRISTAL_TEXTURE);
 	  GL11.glPushMatrix();
 	  GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
       this.setRotationAngles(par2, par3, par4, par5, par6, par7, par1Entity);
-      setRotation(Cristal, 0.7853982F, -0.01F*this.ticker, 0.6154729F);
+      int tick=GimmickeryClientProps.renderTick;
+      setRotation(Cristal, 0.7853982F, (float) (-0.01F*tick*this.rotationSpeed), 0.6154729F);
       this.Cristal.render(par7);
-      setRotation(goldchip1,0,0.01F*this.ticker,0);
-      setRotation(goldchip2,0,0.01F*this.ticker,0);
+      setRotation(goldchip1,0,(float) (0.01F*tick*this.rotationSpeed),0);
+      setRotation(goldchip2,0,(float) (0.01F*tick*this.rotationSpeed),0);
       goldchip1.render(par7);
       goldchip2.render(par7);
       GL11.glPopMatrix();
+  }
+  public static void setSpeedLevel(int speed){
+	  rotationSpeed=Math.sqrt(speed);
   }
   
   private void setRotation(ModelRenderer model, float x, float y, float z)
