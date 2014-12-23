@@ -3,7 +3,10 @@ package net.frostcraftsman.gimmickery.entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 public class EntityPrinnyBlue extends EntityAnimal{
@@ -11,6 +14,8 @@ public class EntityPrinnyBlue extends EntityAnimal{
 	public EntityPrinnyBlue(World par1World) {
 		super(par1World);
 		this.setSize(0.9F, 1.3F);
+        this.tasks.addTask(1, new EntityAIMoveTowardsTarget(this, 0.9D, 32.0F));
+        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		// TODO Auto-generated constructor stub
 	}
 

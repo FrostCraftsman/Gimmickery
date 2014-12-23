@@ -12,11 +12,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.ai.EntityAIBreakDoor;
 import net.minecraft.entity.ai.EntityAIDefendVillage;
+import net.minecraft.entity.ai.EntityAIEatGrass;
 import net.minecraft.entity.ai.EntityAIFollowOwner;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
@@ -29,6 +31,7 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIOwnerHurtByTarget;
 import net.minecraft.entity.ai.EntityAIOwnerHurtTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
@@ -53,43 +56,18 @@ import net.frostcraftsman.gimmickery.EntityAI.EntityKarakuriNingyAIManager;
 import net.frostcraftsman.gimmickery.block.*;
 import net.frostcraftsman.gimmickery.item.ItemWoodKarakuriNingyG;
 
-
 public class EntityWoodKarakuriNingyG extends EntityTameable{	
 	
+	private EntityTameable theEntity;
     private EntityPlayer player;
-    private EntityPlayer player1;
 
-	public EntityWoodKarakuriNingyG(World par1World) {
+	public EntityWoodKarakuriNingyG(World par1World) 
+	{
 		super(par1World);
         this.setSize(1.4F, 2.9F);     
-        experienceValue = 5;
-        
-            this.getNavigator().setAvoidsWater(true);
-            this.getNavigator().tryMoveToEntityLiving(player, 2);
-            this.tasks.addTask(1, new EntityAISwimming(this));
-            this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityMob.class, 1.0D, true));
-            this.tasks.addTask(3, new EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
-            this.tasks.addTask(4, new EntityAILeapAtTarget(this, 0.3F));
-            this.tasks.addTask(5, new EntityAIWander(this, 1.25F));
-            this.tasks.addTask(6, new EntityAIWatchClosest(this,EntityPlayer.class, 8.0F));
-            // ר��AI��manager
-            this.tasks.addTask(7, new EntityKarakuriNingyAIManager(this, 1.25F));
-            
-            this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
-            this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
-            this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
-            this.setTamed(false);
-            
-        
-       
-        if(this.FindEntityPlayerNow() instanceof EntityPlayer)
-        { 	
-            System.out.println("�ҵ��������~��������ǣ�"+player1.getEntityName());
-        }
-	    
-
-        
-	}
+        experienceValue = 5;  
+	}	
+	
 
 	public EntityWoodKarakuriNingyG(World par1World, double par2, double par4, double par6, EntityLivingBase par8EntityLivingBase)
     {
@@ -102,7 +80,7 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
         this.prevPosX = par2;
         this.prevPosY = par4;
         this.prevPosZ = par6;
-        this.getNavigator().setAvoidsWater(true);
+        this.getNavigator().setAvoidsWater(false);
         this.getNavigator().tryMoveToEntityLiving(player, 2);
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityMob.class, 1.0D, true));
@@ -110,7 +88,7 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
         this.tasks.addTask(4, new EntityAILeapAtTarget(this, 0.3F));
         this.tasks.addTask(5, new EntityAIWander(this, 1.25F));
         this.tasks.addTask(6, new EntityAIWatchClosest(this,EntityPlayer.class, 8.0F));
-        // ר��AI��manager
+        // AI manager
         this.tasks.addTask(7, new EntityKarakuriNingyAIManager(this, 1.25F));
         
         this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
@@ -120,91 +98,128 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
         
         if(this.findPowerSource() == true)
         {    
-            System.out.println("�ɹ����������");
+            System.out.println("已找到能量魔方");
+            trigger=true;
         }
         else
         {
-            System.out.println("�������㡤�˶������ܡ�����");
+            System.out.println("没有找到能量魔方继续搜索。");
+        }
+        
+    	/** 获得能量后进行对应的功能。 */
+        if(this.trigger==true)
+        {
+        	this.FindAndBuildTheTilledField();
+        	
+        	if(this.FindEntityPlayerNow() instanceof EntityPlayer)
+              { 	
+                System.out.println("已找到玩家，玩家名为："+player.getEntityName());
+              }
         }
     }
 
 	
-	/** ���ַ���Ѱ��ħ���ĳ��� */
-	int distance=10;
+	/** 搜索能量魔方的方法以及变量 */
+	int distance=6;
 	int id;
 	int kposX;
 	int jposY;
-	int iposZ;
+	int iposZ;	
+	int kposX1;
+	int jposY1;
+	int iposZ1;
+	int numDirt;
+	int numWater;
 
 	public boolean findPowerSource()
 	{
-		for(int i=1; i<distance; i++)
+	  for(int i=1; i<distance; i++)
 		{        
-		    for(int j=1; j<distance; j++)
+		  for(int j=1; j<distance; j++)
 		    {
-		        for(int k=1; k<distance; k++)
+		      for(int k=1; k<distance; k++)
 		    	{
-		        	 kposX=(int)(this.posX+k);
-		        	 jposY=(int)(this.posY+j);
-		        	 iposZ=(int)(this.posZ+i);
-		        	 
-		    			 id = this.worldObj.getBlockId(kposX, jposY, iposZ);
-		    				 
-		 				 System.out.println("������x�᷽��,��"+k*i*k+"��̽������x���"+kposX+",��y���"+jposY+",��z���"+iposZ+",��id��"+id);
+		          kposX=MathHelper.floor_double(this.posX+k-3);
+		          jposY=MathHelper.floor_double(this.posY+i-5);
+		          iposZ=MathHelper.floor_double(this.posZ+j-3);
+		          kposX1=MathHelper.floor_double(this.posX);
+		          jposY1=MathHelper.floor_double(this.posY);
+		          iposZ1=MathHelper.floor_double(this.posZ);
+		          	 
+		    	  id = this.worldObj.getBlockId(kposX, jposY, iposZ);
+		    	  System.out.println("X坐标为"+kposX+",Y坐标为"+jposY+",Z坐标为"+iposZ+",id号为"+id);
 		 					
-		 				 if (id == GimmickeryBlocks.PowerSourceBlock.blockID)
-		    				{
-		    				     System.out.println("�Ѷ�λ��ħ��X�����:"+kposX);
-		    				     return true;
-		    				}
-		 			     else
-		 					{
-		 						
-		 						 System.out.println("x�᷽��δ���֡�");
-		 						      
-		 					}			
+		 		  if (id == GimmickeryBlocks.PowerSourceBlock.blockID)
+		    		{
+		    		  System.out.println("已找到能量魔方，魔方的X坐标为："+kposX+"，Y坐标为："+jposY+"，Z坐标为："+iposZ);
+		    		  return true;
+		    		}
+		 		  else
+		 			{   
+		 			      System.out.println("玩家的X坐标为："+kposX1+"，Y坐标为："+jposY1+"，Z坐标为："+iposZ1);
+		 				  System.out.println("未发现能量魔方。");	      
+		 			}			
 		    	}
-		        
-		     System.out.println("������y�᷽��,��"+j*i+"��̽������x���"+kposX+",��y���"+jposY+",��z���"+iposZ+",��id��"+id);
-					
-		     if (id == GimmickeryBlocks.PowerSourceBlock.blockID)
-			    {
-		    	
-				     System.out.println("�Ѷ�λ��ħ��Y�����:"+jposY);
-				     return true;
-				    
-			    }
-		     else
-			    {
-				
-				     System.out.println("Y�᷽��δ���֡�");
-					
-			    }
-		    
-	        }
-	       System.out.println("������z�᷽��,��"+i+"��̽������x���"+kposX+",��y���"+jposY+",��z���"+iposZ+",��id��"+id);
-			
-	       if (id == GimmickeryBlocks.PowerSourceBlock.blockID)
-			  {
-				
-		           System.out.println("�Ѷ�λ��ħ��Z�����:"+iposZ);
-		           return true;
-		        
-			  }
-		   else
-			  {
-				
-				   System.out.println("Z�᷽��δ���֡�");
-				
-			  }
+		    }
 	   }
-		
-		return false;
-		
+		return false;	
+	}
+	
+
+	/** 判断是否能够进行种地的变量以及种地的方法 */
+	boolean trigger=false;
+	
+	public void FindAndBuildTheTilledField()
+	{
+	  for(int i=1; i<distance; i++)
+		{        
+		  for(int j=1; j<distance; j++)
+		    {
+		      for(int k=1; k<distance; k++)
+		    	{	
+		          kposX=MathHelper.floor_double(this.posX+k-3);
+		          jposY=MathHelper.floor_double(this.posY+i-4);
+		          iposZ=MathHelper.floor_double(this.posZ+j-3);
+		          kposX1=MathHelper.floor_double(this.posX);
+		          jposY1=MathHelper.floor_double(this.posY);
+		          iposZ1=MathHelper.floor_double(this.posZ);
+		    	  
+		    	  this.worldObj.setBlock(kposX, jposY, iposZ, Block.waterMoving.blockID, 0, 2);
+	              System.out.println("设置流动水流。");
+	              numWater++;
+	              System.out.println("搜索计步器："+numWater);
+	  
+                  if(numWater>31&&numWater<35)
+	               {
+                     this.worldObj.setBlock(kposX, jposY, iposZ, Block.tilledField.blockID, 0, 2);
+		             System.out.println("设置耕地。");
+		             numDirt++;
+		           }
+		     
+	              if(numWater>36&&numWater<40)
+		           {
+                     this.worldObj.setBlock(kposX, jposY, iposZ, Block.tilledField.blockID, 0, 2);
+		             System.out.println("设置耕地。");
+		             numDirt++;
+		           }
+		     
+	              if(numWater>41&&numWater<45)
+		           {
+                     this.worldObj.setBlock(kposX, jposY, iposZ, Block.tilledField.blockID, 0, 2);
+		             System.out.println("设置耕地。");
+		             numDirt++;
+		           }
+		     
+	              if(numWater>50)
+		           {
+		             this.worldObj.setBlock(kposX, jposY, iposZ, 0, 0, 2);
+		             System.out.println("设置空气。"); 
+		           }
+		    	}
+		    }
+	   }	
 	}
 
-	
-	
 	
 	/**
      * Play the taming effect, will either be hearts or smoke depending on status
@@ -223,9 +238,7 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
     }
     
     
-	
-	/**
-	 *  ���ַ���Ѱ��player�ĳ�����
+	/**用来寻找玩家的方法及变量
 	 */
 	float f = 8.0F;
     List list;
@@ -241,18 +254,18 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
 
             if (entityplayer.getCurrentEquippedItem() != null && this.isBreedingItem(entityplayer.getCurrentEquippedItem()))
             {
-                player1=entityplayer;
-                return entityplayer;
+                player=entityplayer;
+                return player;
             }
             else
             {
-            	this.FindEntityPlayerNow();
-            	System.out.println("��û�ҵ�������Ѱ��~");
+            	System.out.println("还没有找到玩家,继续搜索。");
             }
         }
         return null;
 	}
 
+	
 	/**
      * Called to update the entity's position/logic.
      */
@@ -272,6 +285,7 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
 
     }
 
+    
     @Override
     protected void applyEntityAttributes()
     {
@@ -288,12 +302,14 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
         }
     }
     
+    
     protected void entityInit()
     {
         super.entityInit();
 
     }
 
+    
     /**
      * Returns true if the newer Entity AI code should be run
      */
@@ -302,6 +318,7 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
         return true;
     }
 
+    
     /**
      * main AI tick function, replaces updateEntityActionState
      */
@@ -317,9 +334,11 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
     public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.writeEntityToNBT(par1NBTTagCompound);
-        
+        par1NBTTagCompound.setBoolean("Tamed", this.isTamed());
+        par1NBTTagCompound.setString("Owner",this.getOwnerName());
 
     }
+    
 
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
@@ -327,8 +346,11 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
     public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.readEntityFromNBT(par1NBTTagCompound);
+        this.setTamed(par1NBTTagCompound.getBoolean("Tamed"));
+        this.setOwner(par1NBTTagCompound.getString("Owner"));
 
     }
+    
 
     public boolean attackEntityAsMob(Entity par1Entity)
     {
@@ -344,6 +366,7 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
     
     
     /**
+     * 与人偶互动让人偶能够得到对应的玩家信息。
      * Called when a player interacts with a mob. e.g. gets milk from a cow, gets into the saddle on a pig.
      */
     public boolean interact(EntityPlayer par1EntityPlayer)
@@ -382,16 +405,14 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
                     this.worldObj.setEntityState(this, (byte)6);
                 }
             }
-
             return true;
         }
-
         return super.interact(par1EntityPlayer);
-    }
-    
+    }  
     
 
     /**
+     * 死后掉落的物品。
      * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param
      * par2 - Level of Looting used to kill this mob.
      */
@@ -413,6 +434,7 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
         }
     }
     
+    
     /**
      * Called when the mob's health reaches 0.
      */
@@ -421,24 +443,28 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
         super.onDeath(par1DamageSource);
     }
 
+    
     @Override
     protected String getLivingSound()
     {
         return "gimmickery:KarakuriNingySound";//this refers to:gimmickery/sound/KarakuriNingySound
     }
 
+    
     @Override
     protected String getHurtSound()
     {
         return "gimmickery:optionalFile.KarakuriNingySound";//this refers to:gimmickery/sound/optionalFile/KarakuriNingySound
     }
 
+    
     @Override
     protected String getDeathSound()
     {
         return "gimmickery:optionalFile.optionalFile2.KarakuriNingySound";//etc.
     }
 
+    
     @Override
     protected float getSoundVolume()
     {
@@ -450,6 +476,7 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
 	public EntityAgeable createChild(EntityAgeable p_90011_1_) {
         return null;
     }
+	
 	
 	/**
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
