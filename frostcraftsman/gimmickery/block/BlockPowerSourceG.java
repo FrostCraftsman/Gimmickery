@@ -1,6 +1,9 @@
 package net.frostcraftsman.gimmickery.block;
 
+import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.common.network.Player;
 import net.frostcraftsman.gimmickery.Gimmickery;
+import net.frostcraftsman.gimmickery.network.Gimmickery250Packet;
 import net.frostcraftsman.gimmickery.proxy.GimmickeryClientProps;
 import net.frostcraftsman.gimmickery.registry.GimmickeryBlocks;
 import net.frostcraftsman.gimmickery.tileentity.CristalTileEntity;
@@ -29,43 +32,54 @@ public class BlockPowerSourceG extends GimmickeryBlockContainerBase{
 	public void onBlockAdded(World par1, int par2, int par3, int par4)
     {
         super.onBlockAdded(par1, par2, par3, par4);
-		GimmickeryWorldDataSaver.get(par1).CristalNumplu();
     }
 
 	public void breakBlock(World par1, int par2, int par3, int par4, int par5, int par6)
     {
-		GimmickeryWorldDataSaver.get(par1).CristalNummin();
 		super.breakBlock(par1, par2, par3, par4, par5, par6);
     }
 	
 	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9){
 			CristalTileEntity t = (CristalTileEntity) par1World.getBlockTileEntity(par2, par3, par4);
 			if(!par1World.isRemote){
-				par5EntityPlayer.addChatMessage(""+t.getCristalNum());
+				sendDiscribePacket(par2, par3, par4,t.getCristalNum(), par5EntityPlayer);
 			}
 		return true;
 	}
-
+	
+	private void sendDiscribePacket(int blockx,int blocky,int blockz,int meta,EntityPlayer player){
+		Gimmickery250Packet pkt=new Gimmickery250Packet();
+		pkt.packetType=0;
+		pkt.dataInt=new int[4];
+		pkt.dataInt[0]=blockx;
+		pkt.dataInt[1]=blocky;
+		pkt.dataInt[2]=blockz;
+		pkt.dataInt[3]=meta;
+		PacketDispatcher.sendPacketToPlayer(pkt.toPacket(), (Player) player);
+	}
+	
+	
+	
 	@Override
 	public TileEntity createNewTileEntity(World world){
 		return new CristalTileEntity();
 	}
-
+	@Override
 	public boolean isOpaqueCube()
     {
         return false;
     }
-
+	@Override
 	public boolean renderAsNormalBlock()
     {
         return false;
     }
-	
+	@Override
 	public int getRenderType()
     {
         return GimmickeryClientProps.RENDER_MUILTY_FACE_BLOCK;
     }
-	
+	@Override
 	public boolean isFlammable(IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)
     {
         return false;

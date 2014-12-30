@@ -18,6 +18,7 @@ public class CristalTileEntity extends TileEntity {
 	private int cristalType=0;
 	private String name = this.setName();
 	private boolean isDefaultName=true;
+	public boolean isActive=false;
 	
 	private String setName(){
 		Random rnd = new Random();
@@ -43,6 +44,7 @@ public class CristalTileEntity extends TileEntity {
         par1NBTTagCompound.setByte("CristalType", (byte)(this.cristalType & 255));
         par1NBTTagCompound.setString("CristalName", this.name);
         par1NBTTagCompound.setBoolean("isDefaultName", this.isDefaultName);
+        par1NBTTagCompound.setBoolean("isActive", this.isActive);
     }
 
     /**
@@ -54,6 +56,7 @@ public class CristalTileEntity extends TileEntity {
         this.cristalType = par1NBTTagCompound.getByte("CristalType");
         this.name=par1NBTTagCompound.getString("CristalName");
         this.isDefaultName=par1NBTTagCompound.getBoolean("isDefaultName");
+        this.isActive=par1NBTTagCompound.getBoolean("isActive");
     }
 
     public Packet getDescriptionPacket()
@@ -85,5 +88,10 @@ public class CristalTileEntity extends TileEntity {
 	public int getCristalNum(){
 		return GimmickeryWorldDataSaver.get(this.getWorldObj()).CristalNum;
 	}
-	
+	public void CristalNumPlus1(){
+		GimmickeryWorldDataSaver.get(this.getWorldObj()).CristalNumplu();
+	}
+	public void CristalNumMinors1(){
+		GimmickeryWorldDataSaver.get(this.getWorldObj()).CristalNummin();
+	}
 }
