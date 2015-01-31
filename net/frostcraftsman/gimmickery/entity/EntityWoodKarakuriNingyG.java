@@ -49,29 +49,41 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
-import net.minecraft.village.Village;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDummyContainer;
-import net.frostcraftsman.gimmickery.EntityAI.EntityKarakuriNingyAIManager;
+import net.frostcraftsman.gimmickery.EntityAI.*;
 import net.frostcraftsman.gimmickery.block.*;
 import net.frostcraftsman.gimmickery.item.ItemWoodKarakuriNingyG;
 
 public class EntityWoodKarakuriNingyG extends EntityTameable{	
 	
 	private EntityTameable theEntity;
-    private EntityPlayer player;
-
+    private static EntityPlayer player;
+	public int entityposX=0;
+	public int entityposY=0;
+	public int entityposZ=0;
+	public static boolean EnergyTrigger=false;
+	/** 搜索能量魔方的方法以及变量 */
+	int distance=6;
+	int id;
+    
 	public EntityWoodKarakuriNingyG(World par1World) 
 	{
 		super(par1World);
         this.setSize(1.4F, 2.9F);     
         experienceValue = 5;  
+
 	}	
 	
 
 	public EntityWoodKarakuriNingyG(World par1World, double par2, double par4, double par6, EntityLivingBase par8EntityLivingBase)
     {
         super(par1World);
+        
+        EntityFindPowerSourceAI EntityFindPowerSourceAI = new EntityFindPowerSourceAI();
+        EntityGetUserAI EntityGetUserAI = new EntityGetUserAI();
+        
+        player=EntityGetUserAI.entityGetUser();
         this.setPosition(par2, par4, par6);
         float f = (float)(Math.random() * Math.PI * 2.0D);
         this.motionX = (double)(-((float)Math.sin((double)f)) * 0.02F);
@@ -96,129 +108,11 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
         this.setTamed(false);
         
-        if(this.findPowerSource() == true)
-        {    
-            System.out.println("已找到能量魔方");
-            trigger=true;
-        }
-        else
-        {
-            System.out.println("没有找到能量魔方继续搜索。");
-        }
-        
-    	/** 获得能量后进行对应的功能。 */
-        if(this.trigger==true)
-        {
-        	this.FindAndBuildTheTilledField();
-        	
-        	if(this.FindEntityPlayerNow() instanceof EntityPlayer)
-              { 	
-                System.out.println("已找到玩家，玩家名为："+player.getEntityName());
-              }
-        }
+        entityposX=MathHelper.floor_double(this.posX);
+        entityposY=MathHelper.floor_double(this.posY);
+        entityposZ=MathHelper.floor_double(this.posZ); 
+
     }
-
-	
-	/** 搜索能量魔方的方法以及变量 */
-	int distance=6;
-	int id;
-	int kposX;
-	int jposY;
-	int iposZ;	
-	int kposX1;
-	int jposY1;
-	int iposZ1;
-	int numDirt;
-	int numWater;
-
-	public boolean findPowerSource()
-	{
-	  for(int i=1; i<distance; i++)
-		{        
-		  for(int j=1; j<distance; j++)
-		    {
-		      for(int k=1; k<distance; k++)
-		    	{
-		          kposX=MathHelper.floor_double(this.posX+k-3);
-		          jposY=MathHelper.floor_double(this.posY+i-5);
-		          iposZ=MathHelper.floor_double(this.posZ+j-3);
-		          kposX1=MathHelper.floor_double(this.posX);
-		          jposY1=MathHelper.floor_double(this.posY);
-		          iposZ1=MathHelper.floor_double(this.posZ);
-		          	 
-		    	  id = this.worldObj.getBlockId(kposX, jposY, iposZ);
-		    	  System.out.println("X坐标为"+kposX+",Y坐标为"+jposY+",Z坐标为"+iposZ+",id号为"+id);
-		 					
-		 		  if (id == GimmickeryBlocks.PowerSourceBlock.blockID)
-		    		{
-		    		  System.out.println("已找到能量魔方，魔方的X坐标为："+kposX+"，Y坐标为："+jposY+"，Z坐标为："+iposZ);
-		    		  return true;
-		    		}
-		 		  else
-		 			{   
-		 			      System.out.println("玩家的X坐标为："+kposX1+"，Y坐标为："+jposY1+"，Z坐标为："+iposZ1);
-		 				  System.out.println("未发现能量魔方。");	      
-		 			}			
-		    	}
-		    }
-	   }
-		return false;	
-	}
-	
-
-	/** 判断是否能够进行种地的变量以及种地的方法 */
-	boolean trigger=false;
-	
-	public void FindAndBuildTheTilledField()
-	{
-	  for(int i=1; i<distance; i++)
-		{        
-		  for(int j=1; j<distance; j++)
-		    {
-		      for(int k=1; k<distance; k++)
-		    	{	
-		          kposX=MathHelper.floor_double(this.posX+k-3);
-		          jposY=MathHelper.floor_double(this.posY+i-4);
-		          iposZ=MathHelper.floor_double(this.posZ+j-3);
-		          kposX1=MathHelper.floor_double(this.posX);
-		          jposY1=MathHelper.floor_double(this.posY);
-		          iposZ1=MathHelper.floor_double(this.posZ);
-		    	  
-		    	  this.worldObj.setBlock(kposX, jposY, iposZ, Block.waterMoving.blockID, 0, 2);
-	              System.out.println("设置流动水流。");
-	              numWater++;
-	              System.out.println("搜索计步器："+numWater);
-	  
-                  if(numWater>31&&numWater<35)
-	               {
-                     this.worldObj.setBlock(kposX, jposY, iposZ, Block.tilledField.blockID, 0, 2);
-		             System.out.println("设置耕地。");
-		             numDirt++;
-		           }
-		     
-	              if(numWater>36&&numWater<40)
-		           {
-                     this.worldObj.setBlock(kposX, jposY, iposZ, Block.tilledField.blockID, 0, 2);
-		             System.out.println("设置耕地。");
-		             numDirt++;
-		           }
-		     
-	              if(numWater>41&&numWater<45)
-		           {
-                     this.worldObj.setBlock(kposX, jposY, iposZ, Block.tilledField.blockID, 0, 2);
-		             System.out.println("设置耕地。");
-		             numDirt++;
-		           }
-		     
-	              if(numWater>50)
-		           {
-		             this.worldObj.setBlock(kposX, jposY, iposZ, 0, 0, 2);
-		             System.out.println("设置空气。"); 
-		           }
-		    	}
-		    }
-	   }	
-	}
 
 	
 	/**
@@ -236,35 +130,19 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
             this.worldObj.spawnParticle(s, this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + 0.5D + (double)(this.rand.nextFloat() * this.height), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, d0, d1, d2);
         }
     }
-    
-    
-	/**用来寻找玩家的方法及变量
-	 */
-	float f = 8.0F;
-    List list;
-    int i;
-    
-	public EntityPlayer FindEntityPlayerNow()
+
+	public boolean isStillWorking(EntityPlayer entityplayer,EntityWoodKarakuriNingyG EntityWoodKarakuriNingyG)
 	{
-		list = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.boundingBox.expand((double)f, (double)f, (double)f));
-
-        for (i = 0; i < list.size(); ++i)
-        {
-            EntityPlayer entityplayer = (EntityPlayer)list.get(i);
-
-            if (entityplayer.getCurrentEquippedItem() != null && this.isBreedingItem(entityplayer.getCurrentEquippedItem()))
-            {
-                player=entityplayer;
-                return player;
-            }
-            else
-            {
-            	System.out.println("还没有找到玩家,继续搜索。");
-            }
-        }
-        return null;
+		if(EntityWoodKarakuriNingyG.EnergyTrigger=true)
+		{
+			entityplayer.addChatMessage("人偶已获得能量,将会有10秒钟的维持时间。");
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
-
 	
 	/**
      * Called to update the entity's position/logic.
@@ -272,8 +150,10 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
     public void onUpdate()
     {
         super.onUpdate();
-
-        if (!this.worldObj.isRemote && this.worldObj.difficultySetting == 0)
+      if(!this.worldObj.isRemote)
+      {
+        
+        if (this.worldObj.difficultySetting == 0)
         {
             this.setDead();
         }
@@ -281,8 +161,25 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
         if(player != null) 
         {
             this.getNavigator().tryMoveToEntityLiving(player, 2);
+        }           
+        
+    	/**
+         * 从能量魔方得到的能量有10秒钟的维持时间。
+         */
+        if (this.worldObj.getTotalWorldTime() % 200 == 0)
+        {
+        	this.EnergyTrigger=false;
         }
-
+        
+    	/** 获得能量后进行对应的功能。 */
+        if(this.worldObj.getTotalWorldTime() % 80 == 0 && this.EnergyTrigger==true && !this.worldObj.isRemote)
+        {
+            EntityFindAndBuildTheTilledFieldAI EntityFindAndBuildTheTilledFieldAI = new EntityFindAndBuildTheTilledFieldAI();
+        	System.out.println("Trigger："+this.EnergyTrigger);
+        	System.out.println("获得玩家，玩家名为："+player.getEntityName());
+        	EntityFindAndBuildTheTilledFieldAI.findAndBuildTheTilledField(distance,this);
+        }
+      }  
     }
 
     

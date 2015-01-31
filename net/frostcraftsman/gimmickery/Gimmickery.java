@@ -2,25 +2,17 @@ package net.frostcraftsman.gimmickery;
 
 import java.util.logging.Logger;
 
-import net.frostcraftsman.gimmickery.GUI.CristalGUI;
 import net.frostcraftsman.gimmickery.configration.GimmickeryConfiger;
 import net.frostcraftsman.gimmickery.entity.EntityPrinnyBlue;
 import net.frostcraftsman.gimmickery.entity.EntityWoodKarakuriNingyG;
-import net.frostcraftsman.gimmickery.network.Gimmickery250Packet;
-import net.frostcraftsman.gimmickery.network.GimmickeryPacketHandler;
 import net.frostcraftsman.gimmickery.proxy.GimmickeryClientProps;
 import net.frostcraftsman.gimmickery.proxy.GimmickeryCommonProxy;
 import net.frostcraftsman.gimmickery.registry.GimmickeryBlocks;
 import net.frostcraftsman.gimmickery.registry.GimmickeryItems;
-import net.frostcraftsman.gimmickery.tileentity.CristalTileEntity;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.packet.Packet71Weather;
-import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -34,10 +26,9 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @Mod(modid="gimmickery", name="Gimmickery", version=Gimmickery.VERSION)
-@NetworkMod(clientSideRequired=true, serverSideRequired=false,channels={"Gimmickery"}, packetHandler=GimmickeryPacketHandler.class)
+@NetworkMod(clientSideRequired=true, serverSideRequired=false)
 public class Gimmickery {
 	
 	public static final String VERSION = "0.0.1";
@@ -90,5 +81,4 @@ public class Gimmickery {
 	{
 		 proxy.postInit();
 	}
-
 }

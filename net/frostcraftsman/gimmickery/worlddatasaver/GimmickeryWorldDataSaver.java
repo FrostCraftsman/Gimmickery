@@ -1,7 +1,5 @@
 package net.frostcraftsman.gimmickery.worlddatasaver;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSavedData;
@@ -32,18 +30,13 @@ public class GimmickeryWorldDataSaver extends WorldSavedData {
 	}
 	
 	public void CristalNumplu(){
-		this.CristalNum++;
 		this.markDirty();
+		this.CristalNum++;
 	}
 	
 	public void CristalNummin(){
+		this.markDirty();
 		if(this.CristalNum>0)this.CristalNum--;
-		this.markDirty();
-	}
-	@SideOnly(Side.CLIENT)
-	public void setCristalNum(int num){
-		this.CristalNum=num;
-		this.markDirty();
 	}
 	
 	public static GimmickeryWorldDataSaver get(World world) {

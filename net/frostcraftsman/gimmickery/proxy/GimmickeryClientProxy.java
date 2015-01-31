@@ -1,19 +1,13 @@
 package net.frostcraftsman.gimmickery.proxy;
 
 import net.frostcraftsman.gimmickery.RenderTickHandler;
-import net.frostcraftsman.gimmickery.GUI.CristalGUI;
 import net.frostcraftsman.gimmickery.entity.EntityPrinnyBlue;
 import net.frostcraftsman.gimmickery.entity.EntityWoodKarakuriNingyG;
 import net.frostcraftsman.gimmickery.event.KarakuriNingySoundEvent;
 import net.frostcraftsman.gimmickery.event.PrinnyBlueSoundEvent;
 import net.frostcraftsman.gimmickery.model.*;
-import net.frostcraftsman.gimmickery.network.Gimmickery250Packet;
 import net.frostcraftsman.gimmickery.render.*;
 import net.frostcraftsman.gimmickery.tileentity.CristalTileEntity;
-import net.frostcraftsman.gimmickery.worlddatasaver.GimmickeryWorldDataSaver;
-import net.minecraft.client.Minecraft;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -52,15 +46,4 @@ public class GimmickeryClientProxy extends GimmickeryCommonProxy{
            MinecraftForge.EVENT_BUS.register(new KarakuriNingySoundEvent());//register the sound event handling class
            MinecraftForge.EVENT_BUS.register(new PrinnyBlueSoundEvent());//register the sound event handling class
     }
-    
-	public static void handlePacketFromServer(Gimmickery250Packet packet)
-	{
-	    switch(packet.packetType){
-	    case 0:
-	    	World world=Minecraft.getMinecraft().theWorld;
-	    	GimmickeryWorldDataSaver.get(world).setCristalNum(packet.dataInt[3]);
-	    	Minecraft.getMinecraft().displayGuiScreen(new CristalGUI(packet.dataInt[0], packet.dataInt[1], packet.dataInt[2]));
-	    	break;
-	    }
-	}
 }

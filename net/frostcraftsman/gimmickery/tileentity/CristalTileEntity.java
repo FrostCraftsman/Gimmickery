@@ -18,7 +18,6 @@ public class CristalTileEntity extends TileEntity {
 	private int cristalType=0;
 	private String name = this.setName();
 	private boolean isDefaultName=true;
-	public boolean isActive=false;
 	
 	private String setName(){
 		Random rnd = new Random();
@@ -44,7 +43,6 @@ public class CristalTileEntity extends TileEntity {
         par1NBTTagCompound.setByte("CristalType", (byte)(this.cristalType & 255));
         par1NBTTagCompound.setString("CristalName", this.name);
         par1NBTTagCompound.setBoolean("isDefaultName", this.isDefaultName);
-        par1NBTTagCompound.setBoolean("isActive", this.isActive);
     }
 
     /**
@@ -56,7 +54,6 @@ public class CristalTileEntity extends TileEntity {
         this.cristalType = par1NBTTagCompound.getByte("CristalType");
         this.name=par1NBTTagCompound.getString("CristalName");
         this.isDefaultName=par1NBTTagCompound.getBoolean("isDefaultName");
-        this.isActive=par1NBTTagCompound.getBoolean("isActive");
     }
 
     public Packet getDescriptionPacket()
@@ -88,10 +85,35 @@ public class CristalTileEntity extends TileEntity {
 	public int getCristalNum(){
 		return GimmickeryWorldDataSaver.get(this.getWorldObj()).CristalNum;
 	}
-	public void CristalNumPlus1(){
-		GimmickeryWorldDataSaver.get(this.getWorldObj()).CristalNumplu();
+	
+		public void entityPowerOn()
+	{
+        AxisAlignedBB axisalignedbb = AxisAlignedBB.getAABBPool().getAABB((double)this.xCoord, (double)this.yCoord, (double)this.zCoord, (double)(this.xCoord + 1), (double)(this.yCoord + 1), (double)(this.zCoord + 1)).expand(3,3,3);
+        axisalignedbb.maxY = (double)this.worldObj.getHeight();
+        List list = this.worldObj.getEntitiesWithinAABB(EntityWoodKarakuriNingyG.class, axisalignedbb);
+        Iterator iterator = list.iterator();
+        EntityWoodKarakuriNingyG EntityWoodKarakuriNingyG;
+
+        while (iterator.hasNext())
+        {
+        	EntityWoodKarakuriNingyG = (EntityWoodKarakuriNingyG)iterator.next();
+        	EntityWoodKarakuriNingyG.EnergyTrigger=true;
+        }
 	}
-	public void CristalNumMinors1(){
-		GimmickeryWorldDataSaver.get(this.getWorldObj()).CristalNummin();
-	}
+	
+	public void updateEntity() 
+    {
+        if (this.worldObj.getTotalWorldTime() % 80L == 0L)
+        {
+            this.entityPowerOn();
+            if(EntityWoodKarakuriNingyG.EnergyTrigger=true)
+            {
+                System.out.println("人偶已获得能量。");
+            }
+            else
+            {
+              	System.out.println("获得能量失败。");
+            }
+        }
+    }
 }

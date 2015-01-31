@@ -30,7 +30,6 @@ public class ModelCristal extends GimmickeryModelBase
 {
   //fields
 	private static double rotationSpeed=0;
-	public boolean isActive=true;
     ModelRenderer Cristal;
     ModelRenderer goldchip1;
     ModelRenderer goldchip2;
@@ -67,12 +66,10 @@ public class ModelCristal extends GimmickeryModelBase
 	  GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
       this.setRotationAngles(par2, par3, par4, par5, par6, par7, par1Entity);
       int tick=GimmickeryClientProps.renderTick;
-      int b=1;
-      if(!isActive)b=0;
-      setRotation(Cristal, 0.7853982F, (float) (-0.01F*tick*this.rotationSpeed*b), 0.6154729F);
+      setRotation(Cristal, 0.7853982F, (float) (-0.01F*tick*this.rotationSpeed), 0.6154729F);
       this.Cristal.render(par7);
-      setRotation(goldchip1,0,(float) (0.01F*tick*this.rotationSpeed*b),0);
-      setRotation(goldchip2,0,(float) (0.01F*tick*this.rotationSpeed*b),0);
+      setRotation(goldchip1,0,(float) (0.01F*tick*this.rotationSpeed),0);
+      setRotation(goldchip2,0,(float) (0.01F*tick*this.rotationSpeed),0);
       goldchip1.render(par7);
       goldchip2.render(par7);
       GL11.glPopMatrix();

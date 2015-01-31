@@ -1,6 +1,7 @@
 package net.frostcraftsman.gimmickery.item;
 
 import net.frostcraftsman.gimmickery.Gimmickery;
+import net.frostcraftsman.gimmickery.EntityAI.EntityGetUserAI;
 import net.frostcraftsman.gimmickery.entity.EntityWoodKarakuriNingyG;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,28 +18,19 @@ public class ItemWoodKarakuriNingyG extends GimmickeryItemBase{
 		// TODO Auto-generated constructor stub
 	}
 	
-
 	@Override
-	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,EntityPlayer par3EntityPlayer)
-	{		
-		int EntityPosZ = MathHelper.floor_double(par3EntityPlayer.posZ);
-		if(EntityPosZ<0)
-		{	
-			EntityPosZ+=4;
-		}
-		else
+	public boolean onItemUse(ItemStack par1ItemStack,
+			EntityPlayer par2EntityPlayer, World par3World, int par4, int par5,
+			int par6, int par7, float par8, float par9, float par10) {
+
+		if(!par3World.isRemote)
 		{
-			EntityPosZ+=-4;
-		}
-		
-		if(!par2World.isRemote)
-		{
-		EntityWoodKarakuriNingyG entity = new EntityWoodKarakuriNingyG(par2World, par3EntityPlayer.posX, par3EntityPlayer.posY+1, EntityPosZ, par3EntityPlayer);
-		par2World.spawnEntityInWorld(entity);
+		  EntityGetUserAI EntityGetUserAI = new EntityGetUserAI();	
+		  EntityWoodKarakuriNingyG entity = new EntityWoodKarakuriNingyG(par3World, par4, par5+1, par6, par2EntityPlayer);
+		  EntityGetUserAI.entitySetUser(par2EntityPlayer);
+		  par3World.spawnEntityInWorld(entity);
 		}		
 		
-		System.out.println("玩家坐标："+"X："+par3EntityPlayer.posX+"，Y："+par3EntityPlayer.posY+"，Z："+par3EntityPlayer.posZ);
-		System.out.println("人偶坐标："+"X："+par3EntityPlayer.posX+"，Y："+par3EntityPlayer.posY+1+"，Z："+EntityPosZ);
-		return par1ItemStack;
-    }
+		return true;
+	}
 }

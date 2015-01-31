@@ -12,6 +12,7 @@ public class GimmickeryBlocks
 {
 
 	public static BlockPowerSourceG PowerSourceBlock;
+	public static BlockBuildingSignal BuildingSignal;
 
 	public static void init() {
 		int id = 3500;
@@ -22,5 +23,6 @@ public class GimmickeryBlocks
 			e.printStackTrace();
 		}
 		PowerSourceBlock = new BlockPowerSourceG(id, Material.glass);
+		BuildingSignal = new BlockBuildingSignal(3501, Material.glass);
 	}
 }
