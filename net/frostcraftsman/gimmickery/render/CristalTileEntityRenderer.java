@@ -34,7 +34,7 @@ public class CristalTileEntityRenderer extends TileEntitySpecialRenderer {
 	}    
     
     public void rendering(float par1, float par2, float par3, int par4, int par6){
-    	String s=new String("PLZ WAIT:P");
+    	String s;
         int color = GimmickeryClientProps.CRISTAL_NAME_COLOR;
         try{
         	if(GimmickeryClientProps.renderTick%80<40){
@@ -45,7 +45,6 @@ public class CristalTileEntityRenderer extends TileEntitySpecialRenderer {
         }catch(java.lang.NullPointerException e){
         	s="NULL";
         }
-    	GL11.glPushMatrix();
         GL11.glTranslatef(par1 + 0.5F, par2 + 0.5F, par3 + 0.5F);
         GL11.glScalef(1.0F, -1.0F, 1.0F);
         GL11.glDisable(GL11.GL_CULL_FACE);
@@ -57,7 +56,6 @@ public class CristalTileEntityRenderer extends TileEntitySpecialRenderer {
         GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         GL11.glDisable(GL11.GL_ALPHA_TEST);
         GL11.glEnable(GL11.GL_CULL_FACE);
-        GL11.glPopMatrix();
     }
     
     /**

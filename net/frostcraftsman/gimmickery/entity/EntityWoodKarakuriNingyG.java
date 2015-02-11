@@ -62,7 +62,7 @@ public class EntityWoodKarakuriNingyG extends EntityTameable{
 	public int entityposX=0;
 	public int entityposY=0;
 	public int entityposZ=0;
-	public static boolean EnergyTrigger=false;
+	public boolean EnergyTrigger=false;
 	/** 搜索能量魔方的方法以及变量 */
 	int distance=6;
 	int id;

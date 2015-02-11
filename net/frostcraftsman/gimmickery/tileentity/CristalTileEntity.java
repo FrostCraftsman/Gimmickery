@@ -1,10 +1,13 @@
 package net.frostcraftsman.gimmickery.tileentity;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.frostcraftsman.gimmickery.configration.GimmickeryConfiger;
+import net.frostcraftsman.gimmickery.entity.EntityWoodKarakuriNingyG;
 import net.frostcraftsman.gimmickery.model.ModelCristal;
 import net.frostcraftsman.gimmickery.proxy.GimmickeryClientProps;
 import net.frostcraftsman.gimmickery.worlddatasaver.GimmickeryWorldDataSaver;
@@ -13,6 +16,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 
 public class CristalTileEntity extends TileEntity {
 	private int cristalType=0;
@@ -91,29 +95,10 @@ public class CristalTileEntity extends TileEntity {
         AxisAlignedBB axisalignedbb = AxisAlignedBB.getAABBPool().getAABB((double)this.xCoord, (double)this.yCoord, (double)this.zCoord, (double)(this.xCoord + 1), (double)(this.yCoord + 1), (double)(this.zCoord + 1)).expand(3,3,3);
         axisalignedbb.maxY = (double)this.worldObj.getHeight();
         List list = this.worldObj.getEntitiesWithinAABB(EntityWoodKarakuriNingyG.class, axisalignedbb);
-        Iterator iterator = list.iterator();
-        EntityWoodKarakuriNingyG EntityWoodKarakuriNingyG;
-
-        while (iterator.hasNext())
-        {
-        	EntityWoodKarakuriNingyG = (EntityWoodKarakuriNingyG)iterator.next();
-        	EntityWoodKarakuriNingyG.EnergyTrigger=true;
+        for(Object entity:list){
+        	((EntityWoodKarakuriNingyG)entity).EnergyTrigger=true;
         }
 	}
 	
-	public void updateEntity() 
-    {
-        if (this.worldObj.getTotalWorldTime() % 80L == 0L)
-        {
-            this.entityPowerOn();
-            if(EntityWoodKarakuriNingyG.EnergyTrigger=true)
-            {
-                System.out.println("人偶已获得能量。");
-            }
-            else
-            {
-              	System.out.println("获得能量失败。");
-            }
-        }
-    }
+	public void updateEntity(){}
 }

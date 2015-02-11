@@ -6,6 +6,7 @@ import net.frostcraftsman.gimmickery.entity.EntityWoodKarakuriNingyG;
 import net.frostcraftsman.gimmickery.event.KarakuriNingySoundEvent;
 import net.frostcraftsman.gimmickery.event.PrinnyBlueSoundEvent;
 import net.frostcraftsman.gimmickery.model.*;
+import net.frostcraftsman.gimmickery.network.Gimmickery250Packet;
 import net.frostcraftsman.gimmickery.render.*;
 import net.frostcraftsman.gimmickery.tileentity.CristalTileEntity;
 import net.minecraftforge.common.MinecraftForge;
@@ -24,7 +25,7 @@ public class GimmickeryClientProxy extends GimmickeryCommonProxy{
 	public void init() 
 	{
         super.init();
-        RenderingRegistry.registerBlockHandler(new CristalInHandRenderer());
+        RenderingRegistry.registerBlockHandler(new MuiltyFaceBlockInHandRenderer(new ModelCristal()));
         GameRegistry.registerTileEntity(CristalTileEntity.class, "TileEntityCristal");
     }
     
@@ -46,4 +47,6 @@ public class GimmickeryClientProxy extends GimmickeryCommonProxy{
            MinecraftForge.EVENT_BUS.register(new KarakuriNingySoundEvent());//register the sound event handling class
            MinecraftForge.EVENT_BUS.register(new PrinnyBlueSoundEvent());//register the sound event handling class
     }
+    
+    public static void handlePacketFromServer(Gimmickery250Packet pkt){}
 }

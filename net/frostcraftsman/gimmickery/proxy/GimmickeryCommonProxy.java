@@ -3,6 +3,8 @@ package net.frostcraftsman.gimmickery.proxy;
 import java.util.HashSet;
 import java.util.Set;
 
+import net.frostcraftsman.gimmickery.network.Gimmickery250Packet;
+import net.minecraft.entity.player.EntityPlayerMP;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 
@@ -44,6 +46,8 @@ public class GimmickeryCommonProxy {
      
      public void registerSound() {
      }
+     
+     public static void handlePacketFromClient(Gimmickery250Packet pkt,EntityPlayerMP player){}
 
 }
 
