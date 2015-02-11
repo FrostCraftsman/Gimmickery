@@ -12,9 +12,7 @@
 package net.frostcraftsman.gimmickery.model;
 
 import org.lwjgl.opengl.GL11;
-
 import net.frostcraftsman.gimmickery.RenderTickHandler;
-import net.frostcraftsman.gimmickery.proxy.GimmickeryClientProps;
 import net.frostcraftsman.gimmickery.tileentity.CristalTileEntity;
 import net.frostcraftsman.gimmickery.worlddatasaver.GimmickeryWorldDataSaver;
 import net.minecraft.client.Minecraft;
@@ -65,7 +63,7 @@ public class ModelCristal extends GimmickeryModelBase
 	  GL11.glPushMatrix();
 	  GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
       this.setRotationAngles(par2, par3, par4, par5, par6, par7, par1Entity);
-      int tick=GimmickeryClientProps.renderTick;
+      long tick=Minecraft.getMinecraft().theWorld.getTotalWorldTime();
       setRotation(Cristal, 0.7853982F, (float) (-0.01F*tick*this.rotationSpeed), 0.6154729F);
       this.Cristal.render(par7);
       setRotation(goldchip1,0,(float) (0.01F*tick*this.rotationSpeed),0);

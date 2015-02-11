@@ -10,7 +10,6 @@ import cpw.mods.fml.common.TickType;
 public class RenderTickHandler implements ITickHandler {
 	@Override
 	public void tickStart(EnumSet<TickType> type, Object... tickData) {
-		GimmickeryClientProps.renderTick++;
 	}
 
 	@Override

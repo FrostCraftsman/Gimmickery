@@ -39,7 +39,7 @@ public class GimmickeryClientProxy extends GimmickeryCommonProxy{
         RenderingRegistry.registerEntityRenderingHandler(EntityWoodKarakuriNingyG.class, new RenderWoodKarakuriNingyG(new ModelKarakuriNingyG(), 0.5F));//the 0.5F is the shadowsize            
     	RenderingRegistry.registerEntityRenderingHandler(EntityPrinnyBlue.class, new RenderPrinnyBlue(new ModelPrinnyBlue(), 0.5F));//the 0.5F is the shadowsize                    
     	ClientRegistry.bindTileEntitySpecialRenderer(CristalTileEntity.class, new CristalTileEntityRenderer());
-    	TickRegistry.registerTickHandler(new RenderTickHandler(), Side.CLIENT);
+    	//TickRegistry.registerTickHandler(new RenderTickHandler(), Side.CLIENT);
     }
     
     @Override

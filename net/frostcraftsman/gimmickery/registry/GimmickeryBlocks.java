@@ -1,5 +1,6 @@
 package net.frostcraftsman.gimmickery.registry;
 
+import net.frostcraftsman.gimmickery.Gimmickery;
 import net.frostcraftsman.gimmickery.block.*;
 import net.frostcraftsman.gimmickery.configration.GimmickeryConfiger;
 import net.minecraft.block.material.Material;
@@ -15,14 +16,7 @@ public class GimmickeryBlocks
 	public static BlockBuildingSignal BuildingSignal;
 
 	public static void init() {
-		int id = 3500;
-		try {
-			id=GimmickeryConfiger.GetBlockID("Block_Cristal", 3500);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		PowerSourceBlock = new BlockPowerSourceG(id, Material.glass);
-		BuildingSignal = new BlockBuildingSignal(3501, Material.glass);
+		PowerSourceBlock = new BlockPowerSourceG(Gimmickery.CORE_CONFIG.GetBlockID("Block_Cristal", 3500), Material.glass);
+		BuildingSignal = new BlockBuildingSignal(Gimmickery.CORE_CONFIG.GetBlockID("Block_Cristal", 3501), Material.glass);
 	}
 }

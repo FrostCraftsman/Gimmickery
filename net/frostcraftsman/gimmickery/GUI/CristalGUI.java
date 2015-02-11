@@ -33,8 +33,7 @@ public class CristalGUI extends GuiScreen {
 		//获取对应的TileEntity，并通过其获得数据
 		if(this.tile instanceof CristalTileEntity){
 			CristalTileEntity tile=(CristalTileEntity) this.tile;
-			this.isActive=tile.isActive;
-			this.activedCristalNum=tile.getCristalNum();
+			//未完成
 		}else{
 			return;
 		}
@@ -51,7 +50,7 @@ public class CristalGUI extends GuiScreen {
 		drawDefaultBackground();
 		//绘制GUI背景
 		GL11.glColor3f(1F, 1F, 1F);
-		mc.renderEngine.bindTexture(GimmickeryClientProps.BACK_GROUND_PIC);
+		mc.renderEngine.bindTexture(GimmickeryClientProps.GUI_BACK_GROUND_PIC);
 		this.drawTexturedModalRect(90, 0, 0, 0, 244, 576);
 		this.text.drawTextBox();
 		super.drawScreen(par1, par2, par3);
@@ -66,9 +65,7 @@ public class CristalGUI extends GuiScreen {
 		switch(button.id){
 		case 1:
 			//按下开关按钮的动作
-			this.isActive=!this.isActive;
-			((CristalTileEntity) this.tile).isActive=this.isActive;
-			setTileEntityData(isActive);
+			//未完成
 			button.displayString=this.getSwitchString();
 			//发送数据包
 			Gimmickery250Packet pkt=new Gimmickery250Packet();
@@ -84,13 +81,6 @@ public class CristalGUI extends GuiScreen {
 	
 	private String getSwitchString(){
 		return this.isActive?"OFF":"ON";
-	}
-	private void setTileEntityData(boolean b){
-		if(b){
-			((CristalTileEntity) this.tile).CristalNumPlus1();
-		}else{
-			((CristalTileEntity) this.tile).CristalNumMinors1();
-		}
 	}
 	public boolean doesGuiPauseGame()
     {

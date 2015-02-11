@@ -1,5 +1,6 @@
 package net.frostcraftsman.gimmickery;
 
+import java.io.File;
 import java.util.logging.Logger;
 
 import net.frostcraftsman.gimmickery.configration.GimmickeryConfiger;
@@ -35,6 +36,8 @@ public class Gimmickery {
 	public static Logger log = Logger.getLogger("gimmickery");
 	public static CreativeTabs gct = new GimmickeryCreativeTabs("Gimmickery");
 	
+	public final static GimmickeryConfiger CORE_CONFIG=new GimmickeryConfiger(new File("GimmickeryCoreConfigFile"));
+	
 	@Instance("gimmickery")
     public static Gimmickery instance;
 	
@@ -49,12 +52,11 @@ public class Gimmickery {
 	{
 		 log.setParent(FMLLog.getLogger());
 	     log.info("Starting Gimmickery " + Gimmickery.VERSION);
-	     GimmickeryConfiger.InitliazeConfig(event.getSuggestedConfigurationFile());
 	     GimmickeryClientProps.init();
 	     GimmickeryItems.init();
 	     GimmickeryBlocks.init();
 	     proxy.preInit();
-	     GimmickeryConfiger.SaveConfig();
+	     CORE_CONFIG.SaveConfig();
 	}
 	 
 	@EventHandler

@@ -37,11 +37,7 @@ public class CristalTileEntityRenderer extends TileEntitySpecialRenderer {
     	String s;
         int color = GimmickeryClientProps.CRISTAL_NAME_COLOR;
         try{
-        	if(GimmickeryClientProps.renderTick%80<40){
-        		s=this.tileEntity.getName();
-        	}else{
-        		s=""+par4;
-        	}
+        	s=this.tileEntity.getName();
         }catch(java.lang.NullPointerException e){
         	s="NULL";
         }
