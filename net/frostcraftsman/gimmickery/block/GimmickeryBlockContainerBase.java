@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 /**
  * 自定义容器方块的基类
  */
-public class GimmickeryBlockContainerBase extends BlockContainer{
+public abstract class GimmickeryBlockContainerBase extends BlockContainer{
 
 	/**
 	 * @param par2Material 方块使用的逻辑材质类

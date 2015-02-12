@@ -1,5 +1,7 @@
 package net.frostcraftsman.gimmickery.model;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelBase;
 
 public abstract class GimmickeryModelBase extends ModelBase {
@@ -13,5 +15,8 @@ public abstract class GimmickeryModelBase extends ModelBase {
 		this.GlScaleX = x;
 		this.GlScaleY = y;
 		this.GlScaleZ = z;
+	}
+	public void renderAtSize(){
+		GL11.glScalef(GlScaleX, GlScaleY, GlScaleZ);
 	}
 }

@@ -9,7 +9,7 @@ import net.minecraft.block.material.Material;
 /**
  * 自定义普通方块的基类
  */
-public class GimmickeryBlockBase extends Block{
+public abstract class GimmickeryBlockBase extends Block{
 
 	/**
 	 * @param par2Material 方块使用的逻辑材质类

@@ -7,7 +7,7 @@ import net.minecraft.item.Item;
 /**
  * 自定义物品的基类
  */
-public class GimmickeryItemBase extends Item{
+public abstract class GimmickeryItemBase extends Item{
 
 	public GimmickeryItemBase(int id) {
 		super(id);

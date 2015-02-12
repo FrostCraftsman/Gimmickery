@@ -8,6 +8,11 @@ import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 
 public class RenderTickHandler implements ITickHandler {
+	/**
+	 * 这个类暂时用不到了
+	 * 就是这样
+	 */
+	
 	@Override
 	public void tickStart(EnumSet<TickType> type, Object... tickData) {
 	}
@@ -20,7 +25,7 @@ public class RenderTickHandler implements ITickHandler {
 	@Override
 	public EnumSet<TickType> ticks() {
 		// TODO Auto-generated method stub
-		return EnumSet.of(TickType.PLAYER);
+		return EnumSet.of(TickType.RENDER);
 	}
 
 	@Override

@@ -11,7 +11,7 @@ public class BuildingSignalRenderer extends TileEntitySpecialRenderer{
 	@Override
 	public void renderTileEntityAt(TileEntity tileentity, double d0, double d1,
 			double d2, float f) {
-		// TODO 自动生成的方法存根
+		// TODO 鑷姩娣诲姞
 		
 	}
 
