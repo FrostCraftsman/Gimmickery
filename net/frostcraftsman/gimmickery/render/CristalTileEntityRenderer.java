@@ -41,12 +41,12 @@ public class CristalTileEntityRenderer extends TileEntitySpecialRenderer {
         }catch(java.lang.NullPointerException e){
         	s="NULL";
         }
-    	cristalModel.setSpeedLevel(par4);
         GL11.glTranslatef(par1 + 0.5F, par2 + 0.5F, par3 + 0.5F);
         GL11.glScalef(1.0F, -1.0F, 1.0F);
         GL11.glDisable(GL11.GL_CULL_FACE);
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glEnable(GL11.GL_ALPHA_TEST);
+    	cristalModel.setSpeedLevel(par4);
         cristalModel.render();
         drawToFaceLabelWithText(s, color , 0F, -1.5F, 0F);
         GL11.glDisable(GL12.GL_RESCALE_NORMAL);
