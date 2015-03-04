@@ -15,14 +15,8 @@ public class EntityIce extends EntityThrowable{
 
 	public EntityIce(World par1World) {
 		super(par1World);
-		this.setSize(0.3f,0.3f);
 		// TODO Auto-generated constructor stub
 	}
-	 public EntityIce(World par1World, EntityLivingBase par2EntityLivingBase)
-	    {
-	        super(par1World, par2EntityLivingBase);
-	    }
-
 
 	@Override
 	protected void onImpact(MovingObjectPosition me) {
@@ -37,14 +31,14 @@ public class EntityIce extends EntityThrowable{
 				me.entityHit.worldObj.setBlock((int)me.entityHit.posX, (int)me.entityHit.posY, (int)me.entityHit.posZ, Block.ice.blockID);
 				me.entityHit.worldObj.setBlock((int)me.entityHit.posX+1, (int)me.entityHit.posY, (int)me.entityHit.posZ+1, Block.ice.blockID);
 			}
-			byte b0 = 3;
+			byte b0 = 0;
 
             if (me.entityHit instanceof EntityBlaze)
             {
-                b0 = 6;
+                b0 = 3;
             }
 
-            me.entityHit.attackEntityFrom(DamageSource.drown, (float)b0);
+            me.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float)b0);
         }
 
         for (int i = 0; i < 8; ++i)

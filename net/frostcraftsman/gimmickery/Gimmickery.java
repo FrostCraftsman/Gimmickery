@@ -1,13 +1,11 @@
 package net.frostcraftsman.gimmickery;
 
+import java.io.File;
 import java.util.logging.Logger;
 
 import net.frostcraftsman.gimmickery.configration.GimmickeryConfiger;
-import net.frostcraftsman.gimmickery.entity.EntityFlame;
-import net.frostcraftsman.gimmickery.entity.EntityFrostDoll;
 import net.frostcraftsman.gimmickery.entity.EntityPrinnyBlue;
 import net.frostcraftsman.gimmickery.entity.EntityWoodKarakuriNingyG;
-import net.frostcraftsman.gimmickery.entity.throwble.EntityIce;
 import net.frostcraftsman.gimmickery.proxy.GimmickeryClientProps;
 import net.frostcraftsman.gimmickery.proxy.GimmickeryCommonProxy;
 import net.frostcraftsman.gimmickery.registry.GimmickeryBlocks;
@@ -38,6 +36,8 @@ public class Gimmickery {
 	public static Logger log = Logger.getLogger("gimmickery");
 	public static CreativeTabs gct = new GimmickeryCreativeTabs("Gimmickery");
 	
+	public final static GimmickeryConfiger CORE_CONFIG=new GimmickeryConfiger(new File("GimmickeryCoreConfigFile"));
+	
 	@Instance("gimmickery")
     public static Gimmickery instance;
 	
@@ -52,12 +52,11 @@ public class Gimmickery {
 	{
 		 log.setParent(FMLLog.getLogger());
 	     log.info("Starting Gimmickery " + Gimmickery.VERSION);
-	     GimmickeryConfiger.InitliazeConfig(event.getSuggestedConfigurationFile());
 	     GimmickeryClientProps.init();
 	     GimmickeryItems.init();
 	     GimmickeryBlocks.init();
 	     proxy.preInit();
-	     GimmickeryConfiger.SaveConfig();
+	     CORE_CONFIG.SaveConfig();
 	}
 	 
 	@EventHandler
@@ -67,12 +66,6 @@ public class Gimmickery {
 	     EntityRegistry.registerModEntity(EntityWoodKarakuriNingyG.class, "WoodKarakuriNingy", id, this, 80, 1, true);//id is an internal mob id, you can start at 0 and continue adding them up.
 	     id++;
 	     EntityRegistry.registerModEntity(EntityPrinnyBlue.class, "PrinnyBlue", id, this, 80, 1, true);//id is an internal mob id, you can start at 0 and continue adding them up.
-		 id++;
-		 EntityRegistry.registerModEntity(EntityFlame.class,"flame",id,this,80,1,true);
-		 id++;
-		 EntityRegistry.registerModEntity(EntityFrostDoll.class,"FrostDoll",id,this,80,1,true);
-		 id++;
-		 EntityRegistry.registerModEntity(EntityIce.class,"iceEntity",id,this,80,1,true);
 		 id++;
 	     //EntityRegistry.addSpawn(EntityWoodKarakuriNingyG.class, 10, 4, 4, EnumCreatureType.monster);
 		 proxy.init();
