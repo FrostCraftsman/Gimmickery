@@ -1,7 +1,7 @@
 package net.frostcraftsman.gimmickery.registry;
 
-import net.frostcraftsman.gimmickery.Gimmickery;
 import net.frostcraftsman.gimmickery.GimmickerysPartsCatalog.*;
+import net.frostcraftsman.gimmickery.configration.GimmickeryConfiger;
 import net.frostcraftsman.gimmickery.item.*;
 import net.frostcraftsman.gimmickery.itemintelligencecores.*;
 import net.frostcraftsman.gimmickery.souls.*;
@@ -32,29 +32,33 @@ public class GimmickeryItems
 	public static ItemElementaryMagicLubeOilG ElementaryMagicLubeOil;
 	public static SoulAttackG SoulAttack;
 	public static ItemPrinnyBlue PrinnyBlue;
+	public static flameThrower flamethrower;
+	public static ItemFrostDoll frostdoll;
 	
 	public static void init() 
 	{
-		WoodWheelGear = new ItemWoodWheelGearG(Gimmickery.CORE_CONFIG.GetItemID("WoodWheelGear", 7000));
-		WoodSkeletonFrame = new ItemWoodSkeletonFrameG(Gimmickery.CORE_CONFIG.GetItemID("WoodWheelGear",7001));
-		WoodMagicSkin = new ItemWoodMagicSkinG(Gimmickery.CORE_CONFIG.GetItemID("WoodMagicSkin",7002));
-		StoneWheelGear = new ItemStoneWheelGearG(Gimmickery.CORE_CONFIG.GetItemID("StoneWheelGear",7003));
-		StoneSkeletonFrame = new ItemStoneSkeletonFrameG(Gimmickery.CORE_CONFIG.GetItemID("StoneSkeletonFrame",7004));
-		StoneMagicSkin = new ItemStoneMagicSkinG(Gimmickery.CORE_CONFIG.GetItemID("StoneMagicSkin",7005));
-		IronWheelGear = new ItemIronWheelGearG(Gimmickery.CORE_CONFIG.GetItemID("IronWheelGear", 7006));
-		IronSkeletonFrame = new ItemIronSkeletonFrameG(Gimmickery.CORE_CONFIG.GetItemID("IronSkeletonFrame",7007));
-		IronMagicSkin = new ItemIronMagicSkinG(Gimmickery.CORE_CONFIG.GetItemID("IronMagicSkin",7008));
-		GoldWheelGear = new ItemGoldWheelGearG(Gimmickery.CORE_CONFIG.GetItemID("GoldWheelGear", 7009));
-		GoldSkeletonFrame = new ItemGoldSkeletonFrameG(Gimmickery.CORE_CONFIG.GetItemID("GoldSkeletonFrame",7010));
-		GoldMagicSkin = new ItemGoldMagicSkinG(Gimmickery.CORE_CONFIG.GetItemID("GoldMagicSkin",7011));
-		DiamondWheelGear = new ItemDiamondWheelGearG(Gimmickery.CORE_CONFIG.GetItemID("DiamondWheelGear", 7012));
-		DiamondSkeletonFrame = new ItemDiamondSkeletonFrameG(Gimmickery.CORE_CONFIG.GetItemID("DiamondSkeletonFrame",7013));
-		DiamondMagicSkin = new ItemDiamondMagicSkinG(Gimmickery.CORE_CONFIG.GetItemID("DiamondMagicSkin",7014));
-		EmptyIntelligenceCore = new ItemEmptyIntelligenceCoreG(Gimmickery.CORE_CONFIG.GetItemID("EmptyIntelligenceCore",7015));
-		IntelligenceCoreAttack = new ItemIntelligenceCoreAttackG(Gimmickery.CORE_CONFIG.GetItemID("IntelligenceCoreAttack",7016));
-		SoulAttack = new SoulAttackG(Gimmickery.CORE_CONFIG.GetItemID("SoulAttack",7017));
-		ElementaryMagicLubeOil = new ItemElementaryMagicLubeOilG(Gimmickery.CORE_CONFIG.GetItemID("ElementaryMagicLubeOil",7018));
-		WoodKarakuriNingy = new ItemWoodKarakuriNingyG(Gimmickery.CORE_CONFIG.GetItemID("WoodKarakuriNingy",7019));
-		PrinnyBlue = new ItemPrinnyBlue(Gimmickery.CORE_CONFIG.GetItemID("PrinnyBlue",7020));
+		WoodWheelGear = new ItemWoodWheelGearG(GimmickeryConfiger.GetItemID("WoodWheelGear", 7000));
+		WoodSkeletonFrame = new ItemWoodSkeletonFrameG(GimmickeryConfiger.GetItemID("WoodWheelGear",7001));
+		WoodMagicSkin = new ItemWoodMagicSkinG(GimmickeryConfiger.GetItemID("WoodMagicSkin",7002));
+		StoneWheelGear = new ItemStoneWheelGearG(GimmickeryConfiger.GetItemID("StoneWheelGear",7003));
+		StoneSkeletonFrame = new ItemStoneSkeletonFrameG(GimmickeryConfiger.GetItemID("StoneSkeletonFrame",7004));
+		StoneMagicSkin = new ItemStoneMagicSkinG(GimmickeryConfiger.GetItemID("StoneMagicSkin",7005));
+		IronWheelGear = new ItemIronWheelGearG(GimmickeryConfiger.GetItemID("IronWheelGear", 7006));
+		IronSkeletonFrame = new ItemIronSkeletonFrameG(GimmickeryConfiger.GetItemID("IronSkeletonFrame",7007));
+		IronMagicSkin = new ItemIronMagicSkinG(GimmickeryConfiger.GetItemID("IronMagicSkin",7008));
+		GoldWheelGear = new ItemGoldWheelGearG(GimmickeryConfiger.GetItemID("GoldWheelGear", 7009));
+		GoldSkeletonFrame = new ItemGoldSkeletonFrameG(GimmickeryConfiger.GetItemID("GoldSkeletonFrame",7010));
+		GoldMagicSkin = new ItemGoldMagicSkinG(GimmickeryConfiger.GetItemID("GoldMagicSkin",7011));
+		DiamondWheelGear = new ItemDiamondWheelGearG(GimmickeryConfiger.GetItemID("DiamondWheelGear", 7012));
+		DiamondSkeletonFrame = new ItemDiamondSkeletonFrameG(GimmickeryConfiger.GetItemID("DiamondSkeletonFrame",7013));
+		DiamondMagicSkin = new ItemDiamondMagicSkinG(GimmickeryConfiger.GetItemID("DiamondMagicSkin",7014));
+		EmptyIntelligenceCore = new ItemEmptyIntelligenceCoreG(GimmickeryConfiger.GetItemID("EmptyIntelligenceCore",7015));
+		IntelligenceCoreAttack = new ItemIntelligenceCoreAttackG(GimmickeryConfiger.GetItemID("IntelligenceCoreAttack",7016));
+		SoulAttack = new SoulAttackG(GimmickeryConfiger.GetItemID("SoulAttack",7017));
+		ElementaryMagicLubeOil = new ItemElementaryMagicLubeOilG(GimmickeryConfiger.GetItemID("ElementaryMagicLubeOil",7018));
+		WoodKarakuriNingy = new ItemWoodKarakuriNingyG(GimmickeryConfiger.GetItemID("WoodKarakuriNingy",7019));
+		PrinnyBlue = new ItemPrinnyBlue(GimmickeryConfiger.GetItemID("PrinnyBlue",7020));
+		flamethrower = new flameThrower(GimmickeryConfiger.GetItemID("FlameThrower",7021));
+		frostdoll = new ItemFrostDoll(GimmickeryConfiger.GetItemID("FrostDoll",7022));
     }
 }
